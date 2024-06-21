@@ -41,3 +41,8 @@ body {
     font-weight: bold;
     border: solid #184486 2px;
 }
+.MainArea button:hover{
+    background-color: #184486;
+    color: white;
+
+}
