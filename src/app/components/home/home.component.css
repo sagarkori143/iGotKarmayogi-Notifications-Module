@@ -54,7 +54,8 @@ body {
     margin-left: 1px;
 }
 .Right section input{
-    font-size: 25px;
+    padding-inline-start: 10px;
+    font-size: 18px;
     width: 300px;
     height: 45px;
     border-radius: 10px;
