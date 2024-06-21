@@ -1,0 +1,43 @@
+body {
+    font-family: Arial, sans-serif; /* Default font for the entire body */
+}
+
+.Container {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    padding-inline: 15px;
+    width: vw;
+    background-color: #FDE5CD;
+}
+
+.Container img {
+    mix-blend-mode: multiply;
+}
+
+.MainArea {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 70%;
+    border: solid black 1.5px;
+    margin-inline: 25px;
+    padding-inline: 25px;
+    border-radius: 30px;
+    height: 60px;
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+}
+
+.MainArea button {
+    height: 65%;
+    margin-right: 15px;
+    width: 100px;
+    border-radius: 30px;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    color: #184486;
+    font-weight: bold;
+    border: solid #184486 2px;
+}
