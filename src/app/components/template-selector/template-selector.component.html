@@ -12,9 +12,15 @@
     <div class="Lower">
         <div class="CardsSection">
             <div class="Card" *ngFor="let template of templates" (click)="selectTemplate(template)">
-                <h3>Template Id</h3>
-                <h4>{{ template.id }}</h4>
-                <input type="radio" name="selectedTemplate" [checked]="selectedTemplateId === template.id" (click)="onRadioClick(template.id)">
+                <div class="CardUpper">
+                    <div class="TemplateId">
+                        <h3>Template Id</h3>
+                        <h4>{{ template.id }}</h4>
+                    </div>
+                    <input type="radio" name="selectedTemplate" [checked]="selectedTemplateId === template.id"
+                        (click)="onRadioClick(template.id)">
+                        <span class="radio-checkmark"></span>
+                </div>
                 <p [innerHTML]="template.templateContent | highlight"></p>
             </div>
         </div>
