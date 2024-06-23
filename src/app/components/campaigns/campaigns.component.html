@@ -1,7 +1,7 @@
 <div class="Container">
     <app-navbar/>
     <div class="Content">
-      <div *ngFor="let event of EventsList" class="CampaignBox">
+      <div *ngFor="let event of EventsList" class="CampaignBox" routerLink="/templates">
          <img src={{event.img}}/>
          <h3>{{event.title}}</h3>
          <p>{{event.description}}</p>

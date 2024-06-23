@@ -13,6 +13,7 @@ body {
 
 .Container img {
     mix-blend-mode: multiply;
+    cursor: pointer;
 }
 
 .MainArea {
