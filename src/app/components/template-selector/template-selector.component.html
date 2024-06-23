@@ -1,7 +1,9 @@
+<!-- your-component.component.html -->
+
 <app-navbar></app-navbar>
 <div class="Container">
     <div class="Upper">
-        <h2>{{serviceTitle}}</h2>
+        <h2>{{ serviceTitle }}</h2>
         <div class="Header">
             <h3>Choose Template --></h3>
             <button>New Template</button>
@@ -11,9 +13,9 @@
         <div class="CardsSection">
             <div class="Card" *ngFor="let template of templates" (click)="selectTemplate(template)">
                 <h3>Template Id</h3>
-                <h4>{{template.id}}</h4>
+                <h4>{{ template.id }}</h4>
                 <input type="radio" name="selectedTemplate" [checked]="selectedTemplateId === template.id" (click)="onRadioClick(template.id)">
-                <p>{{template.templateContent}}</p>
+                <p [innerHTML]="template.templateContent | highlight"></p>
             </div>
         </div>
         <div class="SubmitButton">

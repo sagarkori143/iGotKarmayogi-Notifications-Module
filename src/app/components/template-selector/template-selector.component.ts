@@ -1,14 +1,14 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { Router, RouterEvent } from '@angular/router';
-
+import { HighlightPipe } from '../../pipes/highlighter.pipe';
 @Component({
   selector: 'app-template-selector',
   standalone: true,
-  imports: [NavbarComponent,CommonModule],
+  imports: [NavbarComponent,CommonModule,HighlightPipe],
   templateUrl: './template-selector.component.html',
-  styleUrl: './template-selector.component.css'
+  styleUrl: './template-selector.component.css',
 })
 export class TemplateSelectorComponent {
 serviceTitle:string="SMS-Service"
@@ -141,8 +141,7 @@ templates=[
 ]
 selectedTemplateId: number | null = null;
 
-  constructor(private router: Router) {}
-
+constructor(private router: Router) {}
   selectTemplate(template: any) {
     this.selectedTemplateId = this.selectedTemplateId === template.id ? null : template.id;
   }
