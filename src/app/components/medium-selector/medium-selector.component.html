@@ -1,0 +1,25 @@
+<app-navbar></app-navbar>
+<div class="Container">
+  <h1>Select method of communication</h1>
+  <div class="MediumsList">
+    <div class="Option" (click)="selectMedium('Email')">
+      <input type="radio" name="communicationMethod" [checked]="selectedMedium=='Email'" />
+      <p>Email</p>
+      <img src="email.png" alt="Email"  />
+    </div>
+
+    <div class="Option" (click)="selectMedium('WhatsApp')">
+      <input type="radio" name="communicationMethod" [checked]="selectedMedium=='WhatsApp'"/>
+      <p>Whatsapp</p>
+      <img src="whatsapp.png" alt="Whatsapp" />
+    </div>
+
+    <div class="Option" (click)="selectMedium('SMS')">
+      <input type="radio" name="communicationMethod" [checked]="selectedMedium=='SMS'"/>
+      <p>SMS</p>
+      <img src="sms.png" alt="SMS" />
+    </div>
+
+    <button [disabled]="!selectedMedium" (click)="submitHandler()">Submit</button>
+  </div>
+</div>

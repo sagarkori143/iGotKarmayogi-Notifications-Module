@@ -3,6 +3,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { Router, RouterEvent } from '@angular/router';
 import { HighlightPipe } from '../../pipes/highlighter.pipe';
+import { PropServiceService } from '../../services/prop-service.service';
 @Component({
   selector: 'app-template-selector',
   standalone: true,
@@ -141,7 +142,11 @@ templates=[
 ]
 selectedTemplateId: number | null = null;
 
-constructor(private router: Router) {}
+constructor(private router: Router, private propService:PropServiceService) {}
+selectedMedium:null|string=null
+ngOnInit(){
+   this.selectedMedium=this.propService.getMedium()
+}
   selectTemplate(template: any) {
     this.selectedTemplateId = this.selectedTemplateId === template.id ? null : template.id;
   }
