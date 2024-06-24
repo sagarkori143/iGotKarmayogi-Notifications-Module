@@ -159,6 +159,9 @@ ngOnInit(){
     if (this.selectedTemplateId !== null) {
       this.router.navigate(['/usetemplate', this.selectedTemplateId]);
     }
-  } 
+  }
+  createtemplate(){
+    this.router.navigate(['/createnewtemplate']);
+  }
 
 }

@@ -4,6 +4,7 @@ import { HomeComponent } from './components/home/home.component';
 import { TemplateSelectorComponent } from './components/template-selector/template-selector.component';
 import { UseTemplateComponent } from './components/use-template/use-template.component';
 import { MediumSelectorComponent } from './components/medium-selector/medium-selector.component';
+import { CreateNewTemplateComponent } from './components/create-new-template/create-new-template.component';      
 
 export const routes: Routes = [
     { path: '', component: HomeComponent }, 
@@ -11,5 +12,6 @@ export const routes: Routes = [
     {path:'medium',component:MediumSelectorComponent},
     {path:'templates',component:TemplateSelectorComponent},
     { path: 'usetemplate/:id', component: UseTemplateComponent },
+    { path : 'createnewtemplate', component: CreateNewTemplateComponent},
     
 ];
