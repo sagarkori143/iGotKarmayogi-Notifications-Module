@@ -14,9 +14,6 @@
     justify-content: center;
     align-items: center;
 }
-.MediumsList img{
-    height: 40px;
-}
 .Option{
     display: flex;
     gap: 1rem;
@@ -28,6 +25,11 @@
     width: 15rem;
     cursor: pointer;
     transition: transform 0.3s ease;
+    border: solid 1px;
+}
+/*To adjust the whatsapp image gap according to other images */
+.whatsapp{
+    margin-left: -1.5rem;
 }
 .Option:hover,active{
     transform: scale(105%);
