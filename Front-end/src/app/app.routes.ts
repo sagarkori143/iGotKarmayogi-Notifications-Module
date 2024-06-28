@@ -1,17 +1,15 @@
 import { Routes } from '@angular/router';
-import { CampaignsComponent } from './components/campaigns/campaigns.component';
 import { HomeComponent } from './components/home/home.component';
-import { TemplateSelectorComponent } from './components/template-selector/template-selector.component';
-import { UseTemplateComponent } from './components/use-template/use-template.component';
-import { MediumSelectorComponent } from './components/medium-selector/medium-selector.component';
-import { CreateNewTemplateComponent } from './components/create-new-template/create-new-template.component';      
+import { AdminModule } from './modules/admin/admin.module';
+import { authGuard } from './gaurds/auth.guard';
 
 export const routes: Routes = [
-    { path: '', component: HomeComponent }, 
-    { path: 'campaign', component: CampaignsComponent },
-    {path:'medium',component:MediumSelectorComponent},
-    {path:'templates',component:TemplateSelectorComponent},
-    { path: 'usetemplate/:id', component: UseTemplateComponent },
-    { path : 'createnewtemplate', component: CreateNewTemplateComponent},
-    
+  {path: '', redirectTo: '/login', pathMatch: 'full' },
+  {path: 'login',component: HomeComponent},
+  {
+    path: 'dashboard',
+    canActivate: [authGuard],
+    loadChildren: () =>
+      import('./modules/admin/admin.module').then((m) => m.AdminModule),
+  },
 ];

@@ -9,18 +9,20 @@
     </div>
     <div class=Right>
         <h2>ADMINISTRATION LOGIN</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" >
         <div class="Form">
             <section>
                 <label for="email">Email</label>
-                <input name="email" type="email" />
+                <input type="email" id="email" placeholder="Email" class="form-control" formControlName="email"
+                            name="email" />
             </section>
             <section>
                 <label for="password">Password</label>
-                <input name="password" type="password"/>
+                <input type="password" id="password" placeholder="Password" class="form-control"
+                            formControlName="password" name="password" />
             </section>
-            <p ><a href="#">Forgot Password?</a></p>
-            <button routerLink="/campaign">Login</button>
+            <button routerLink="/dashboard">Login</button>
         </div>
-
+    </form>
     </div>
-</div>>
+</div>

@@ -18,7 +18,7 @@ const authUser = asyncHandler(async (req, res) => {
   const parsedInput = schema.safeParse(input);
 
   if (parsedInput.success === false) {
-    res.status(400).json({
+    return res.status(400).json({
       success: false,
       message: "Invalid Input",
     });
@@ -32,7 +32,7 @@ const authUser = asyncHandler(async (req, res) => {
 
   if (user && (await user.matchPassword(password))) {
     generateToken(res, user);
-    res.status(200).json({
+    return res.status(200).json({
       sucess: true,
       data: {
         _id: user._id,
@@ -42,7 +42,7 @@ const authUser = asyncHandler(async (req, res) => {
       message: "User Logged In",
     });
   } else {
-    res.status(401).json({
+    return res.status(401).json({
       success: false,
       message: "Invalid email or password",
     });
@@ -114,7 +114,7 @@ const logout = asyncHandler(async (req, res) => {
     expires: new Date(0),
     httpOnly: true,
   });
-  res.status(200).json({
+  return res.status(200).json({
     success: true,
     message: "User Logged Out",
   });

@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { Router, RouterEvent } from '@angular/router';
-import { HighlightPipe } from '../../pipes/highlighter.pipe';
-import { PropServiceService } from '../../services/prop-service.service';
+import { HighlightPipe } from '../../../../pipes/highlighter.pipe';
+import { PropServiceService } from '../../../../services/prop-service.service';
 
 @Component({
   selector: 'app-create-new-template',

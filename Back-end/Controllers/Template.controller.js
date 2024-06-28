@@ -15,12 +15,12 @@ const getTemplates = asyncHandler(async (req, res) => {
     const templates = await Template.find({ type });
 
     if (templates) {
-        res.status(200).json({
+        return res.status(200).json({
             success: true,
             data: templates,
         });
     } else {
-        res.status(404).json({ 
+        return res.status(404).json({ 
             success: false,
             message: "No templates found" 
         });
@@ -55,7 +55,7 @@ const createTemplate = asyncHandler(async (req, res) => {
         const parsedInput = schema.safeParse(input);
 
         if (parsedInput.success === false) {
-            res.status(400).json({
+            return res.status(400).json({
                 success: false,
                 message: "Invalid Input",
             });
@@ -69,12 +69,12 @@ const createTemplate = asyncHandler(async (req, res) => {
             templateId,
         });
         if (template) {
-            res.status(201).json({
+            return res.status(201).json({
                 success: true,
                 data: template,
             });
         } else {
-            res.status(400).json({ 
+            return res.status(400).json({ 
                 success: false,
                 message: "Invalid template data" 
             });
@@ -100,7 +100,7 @@ const deleteTemplate = asyncHandler(async (req, res) => {
         const template = await Template.findOneAndDelete({ templateId });
 
         if (template) {
-            res.status(200).json({
+            return res.status(200).json({
                 success: true,
                 message: "Template deleted successfully",
             });

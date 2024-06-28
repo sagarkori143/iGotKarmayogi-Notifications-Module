@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { Router } from '@angular/router';
-import { PropServiceService } from '../../services/prop-service.service';
+import { PropServiceService } from '../../../../services/prop-service.service';
 
 @Component({
   selector: 'app-medium-selector',

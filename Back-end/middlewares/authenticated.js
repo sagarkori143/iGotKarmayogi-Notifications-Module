@@ -10,13 +10,13 @@ const verify = async (req, res, next) => {
       req.user = decoded;
       next();
     } catch (error) {
-      res.status(401).json({ 
+      return res.status(401).json({ 
         success: false,
         message: "Not authorized, token failed" 
       });
     }
   } else {
-    res.status(401).json({ 
+    return res.status(401).json({ 
       success: false,
       message: "Not authorized, no token" 
     });
@@ -28,7 +28,7 @@ const roleAuthorization = (roles) => {
       if (roles.includes(req.user.role) ) {
           next();
       } else {
-          res.status(403).json({ 
+          return res.status(403).json({ 
             success: false,
             message: "Not authorized to access this route" 
           });
