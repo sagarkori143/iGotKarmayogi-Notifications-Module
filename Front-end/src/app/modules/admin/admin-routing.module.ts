@@ -6,6 +6,7 @@ import { TemplateSelectorComponent } from './components/template-selector/templa
 import { CreateNewTemplateComponent } from './components/create-new-template/create-new-template.component';
 import { MediumSelectorComponent } from './components/medium-selector/medium-selector.component';
 import { UseTemplateComponent } from './components/use-template/use-template.component';
+import { UserDataComponent } from './components/user-data/user-data.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
       {path: 'templates/:type', component: TemplateSelectorComponent},
       {path: ':type/templates/create', component: CreateNewTemplateComponent},
       {path: ':type/:templateId/users', component: UseTemplateComponent},
+      {path: 'campaigns/users',component:UserDataComponent},
       {path: '', redirectTo: '/dashboard/campaigns', pathMatch: 'full'}
     ]
   }

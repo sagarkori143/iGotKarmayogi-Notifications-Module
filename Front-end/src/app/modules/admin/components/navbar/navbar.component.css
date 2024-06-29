@@ -5,7 +5,8 @@ body {
 .Container {
     display: flex;
     justify-content: space-around;
-    padding: 10px;
+    align-items: center;
+    padding: 20px 10px;
     padding-inline: 15px;
     width: vw;
     background-color: #FDE5CD;

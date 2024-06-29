@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif; /* Default font for the entire body */
 }
 .Container{
-    height: 100vh;
+    min-height: 90vh;
    
 }
 
@@ -12,7 +12,7 @@ body {
     background-color: #FDE5CD;
     justify-content: center;
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 40px;
 }
 .CampaignBox{
