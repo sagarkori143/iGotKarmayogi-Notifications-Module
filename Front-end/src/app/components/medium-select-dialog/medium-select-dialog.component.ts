@@ -13,8 +13,8 @@ import { Router } from '@angular/router';
   styleUrl: './medium-select-dialog.component.css'
 })
 export class MediumSelectDialogComponent {
-  @Input() campaign: any;
-  @Output() close = new EventEmitter<void>();
+    @Input() campaign: any;
+    @Output() close = new EventEmitter<void>();
 
   selectedMethod: string | null = null;
 
@@ -26,7 +26,6 @@ export class MediumSelectDialogComponent {
   submit() {
     if (this.selectedMethod) {
       this.propService.setMedium(this.selectedMethod);
-      this.close.emit();
       this.Router.navigate(['templates']);
     } else {
       alert('Please select a method of communication');

@@ -34,6 +34,17 @@ body {
     transition: transform 0.3s ease, opacity 0.3s ease;
     font-family: 'Poppins', sans-serif;
   }
+  .Closer{
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    height: 1.5rem;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+  .Closer:hover{
+    transform:rotate(90deg);
+  }
   .MediumsList{
     margin-top: rem;
     font-size: 18px;
