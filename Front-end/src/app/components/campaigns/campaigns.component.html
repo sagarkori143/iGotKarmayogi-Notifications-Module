@@ -1,11 +1,13 @@
 <div class="Container">
-    <app-navbar/>
-    <div class="Content">
-      <div *ngFor="let event of EventsList" class="CampaignBox" routerLink="/medium">
-         <img src={{event.img}}/>
-         <h3>{{event.title}}</h3>
-         <p>{{event.description}}</p>
-      </div>
+  <app-navbar></app-navbar>
+  <div class="Content">
+    <div *ngFor="let Campaign of CampaignsList" class="CampaignBox" (click)="onCampaignClick(Campaign)">
+      <img [src]="Campaign.img" />
+      <h3>{{Campaign.title}}</h3>
+      <p>{{Campaign.description}}</p>
     </div>
-    
+  </div>
 </div>
+
+<div *ngIf="selectedCampaign" class="backdrop" (click)="closeDialog()"></div>
+<app-medium-select-dialog *ngIf="selectedCampaign" (close)="closeDialog()"></app-medium-select-dialog>

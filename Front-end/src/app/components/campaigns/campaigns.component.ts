@@ -2,16 +2,17 @@ import { Component } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterModule } from '@angular/router';
+import { MediumSelectDialogComponent } from '../medium-select-dialog/medium-select-dialog.component';
 
 @Component({
   selector: 'app-campaigns',
   standalone: true,
-  imports: [NavbarComponent,CommonModule,RouterModule],
+  imports: [NavbarComponent,CommonModule,RouterModule,MediumSelectDialogComponent],
   templateUrl: './campaigns.component.html',
   styleUrl: './campaigns.component.css'
 })
 export class CampaignsComponent {
-  EventsList = [
+  CampaignsList = [
     {
       "title": "Lohri celebration",
       "img": "https://www.euroschoolindia.com/wp-content/uploads/2024/01/lohri-stories-jpg.webp",
@@ -88,5 +89,13 @@ export class CampaignsComponent {
       "description": "Celebrate Ganesh Chaturthi with us. Let's welcome Lord Ganesha with devotion and joy."
     }
   ]
-  
+  selectedCampaign: any = null;
+
+  onCampaignClick(Campaign: any) {
+    this.selectedCampaign = Campaign;
+  }
+
+  closeDialog() {
+    this.selectedCampaign = null;
+  }
 }
