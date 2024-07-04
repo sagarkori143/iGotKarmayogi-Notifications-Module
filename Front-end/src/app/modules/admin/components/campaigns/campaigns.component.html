@@ -1,9 +1,9 @@
 <div class="Container">
     <div class="Content">
-      <div *ngFor="let event of EventsList" class="CampaignBox" routerLink="/medium">
-         <img src={{event.img}}/>
-         <h3>{{event.title}}</h3>
-         <p>{{event.description}}</p>
+      <div *ngFor="let event of EventsList" class="CampaignBox" [routerLink]="['/dashboard/type']">
+          <img src={{event.img}}/>
+          <h3>{{event.title}}</h3>
+          <p>{{event.description}}</p>
       </div>
     </div>
     

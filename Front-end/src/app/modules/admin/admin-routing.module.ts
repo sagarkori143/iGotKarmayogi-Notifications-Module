@@ -15,7 +15,7 @@ const routes: Routes = [
       {path: 'campaigns', component: CampaignsComponent},
       {path: 'type', component: MediumSelectorComponent},
       {path: 'templates/:type', component: TemplateSelectorComponent},
-      {path: ':type/templates/create', component: CreateNewTemplateComponent},
+      {path: 'templates/:type/create', component: CreateNewTemplateComponent},
       {path: ':type/:templateId/users', component: UseTemplateComponent},
       {path: 'campaigns/users',component:UserDataComponent},
       {path: '', redirectTo: '/dashboard/campaigns', pathMatch: 'full'}

@@ -27,7 +27,7 @@ export class AuthService {
     this.router.navigate(['login']);
   }
   login({ email, password }: any): Observable<any> {
-    const loginUrl = 'http://localhost:5001/api/auth/login';
+    const loginUrl = 'http://localhost:5000/api/auth/login';
     const body = { email, password };
 
     const options = {

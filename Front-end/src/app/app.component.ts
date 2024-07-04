@@ -4,7 +4,7 @@ import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './modules/admin/components/navbar/navbar.component';
 import { CampaignsComponent } from './modules/admin/components/campaigns/campaigns.component';
 import { TemplateSelectorComponent } from './modules/admin/components/template-selector/template-selector.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule,NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-root',

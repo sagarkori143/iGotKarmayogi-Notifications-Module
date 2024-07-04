@@ -13,13 +13,13 @@
                 <div class="CardUpper">
                     <div class="TemplateId">
                         <h3>Template Id</h3>
-                        <h4>{{ template.id }}</h4>
+                        <h4>{{ template?.templateId }}</h4>
                     </div>
-                    <input type="radio" name="selectedTemplate" [checked]="selectedTemplateId === template.id"
+                    <input type="radio" name="selectedTemplate" [checked]="selectedTemplateId === template.templateId"
                         (click)="onRadioClick(template.id)">
                         <span class="radio-checkmark"></span>
                 </div>
-                <p [innerHTML]="template.templateContent | highlight"></p>
+                <p [innerHTML]="template.Content | highlight"></p>
             </div>
         </div>
         <div class="SubmitButton">

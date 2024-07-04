@@ -18,7 +18,12 @@
                 <div class="label-container">
                     <label for="category">Category:</label>
                 </div>
-                <input type="text" id="category" name="category" placeholder="Enter Category">
+                <select id="category" name="category" [(ngModel)]="selectedCategory" class="form-control">
+                    <option value="">Select Category</option>
+                    <option value="SMS">SMS</option>
+                    <option value="Email">Email</option>
+                    <option value="WhatsApp">WhatsApp</option>
+                </select>
             </div>
             <div class="form-group box">
                 <div class="label-container">
