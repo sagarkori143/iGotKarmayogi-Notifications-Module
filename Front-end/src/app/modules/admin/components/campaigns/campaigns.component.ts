@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterModule } from '@angular/router';
-import { MediumSelectDialogComponent } from '../medium-select-dialog/medium-select-dialog.component';
+import { MediumSelectorComponent } from '../medium-selector/medium-selector.component';
+import { MediumSelectDialogComponent } from '../../../../components/medium-select-dialog/medium-select-dialog.component';
 
 @Component({
   selector: 'app-campaigns',
   standalone: true,
-  imports: [NavbarComponent,CommonModule,RouterModule,MediumSelectDialogComponent],
+  imports: [NavbarComponent,CommonModule,RouterModule,MediumSelectorComponent,MediumSelectDialogComponent],
   templateUrl: './campaigns.component.html',
   styleUrl: './campaigns.component.css'
 })

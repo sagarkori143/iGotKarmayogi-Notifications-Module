@@ -19,7 +19,9 @@ export class PropServiceService {
   }
 
   fetchTemplates(type: string): Observable<any[]> {
+    console.log("fetching started")
     const apiUrl = `http://localhost:5000/api/templates/${type}`;
     return this.http.get<any[]>(apiUrl,{withCredentials:true});
+    console.log("Fetching done and returned.")
   }
 }

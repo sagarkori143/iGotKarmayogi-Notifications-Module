@@ -16,17 +16,20 @@ export class MediumSelectDialogComponent {
     @Input() campaign: any;
     @Output() close = new EventEmitter<void>();
 
-  selectedMethod: string | null = null;
+  selectedMedium: string | null = null;
 
-  constructor(private propService:PropServiceService, private Router:Router){}
+  constructor(
+    private propService:PropServiceService,
+     private Router:Router){}
  
   mediumSelect(medium:string){
-   this.selectedMethod=medium;
+   this.selectedMedium=medium;
   }
   submit() {
-    if (this.selectedMethod) {
-      this.propService.setMedium(this.selectedMethod);
-      this.Router.navigate(['templates']);
+    if (this.selectedMedium) {
+      this.propService.setMedium(this.selectedMedium);
+      this.Router.navigate([`/dashboard/templates/${this.selectedMedium}`]);
+    
     } else {
       alert('Please select a method of communication');
     }

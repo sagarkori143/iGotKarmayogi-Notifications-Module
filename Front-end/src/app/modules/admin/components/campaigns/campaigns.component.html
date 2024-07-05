@@ -1,5 +1,4 @@
 <div class="Container">
-  <app-navbar></app-navbar>
   <div class="Content">
     <div *ngFor="let Campaign of CampaignsList" class="CampaignBox" (click)="onCampaignClick(Campaign)">
       <img [src]="Campaign.img" />
