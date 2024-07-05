@@ -28,7 +28,7 @@ export class WhatsappTemplateService {
     }
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const body = { senderNumber, ...template };
-    return this.http.post(`${this.apiUrl}/template/create`, body, { headers });
+    return this.http.post(`${this.apiUrl}/template/create`, body, { headers,withCredentials:true, });
   }
 
   deleteTemplate(id: string): Observable<any> {

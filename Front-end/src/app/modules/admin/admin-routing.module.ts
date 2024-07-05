@@ -8,6 +8,7 @@ import { UseTemplateComponent } from './components/use-template/use-template.com
 import { UserDataComponent } from './components/user-data/user-data.component';
 import { TemplateSelectorComponent } from './components/template-selector/template-selector.component';
 import { WhatsappTemplateSelectorComponent } from '../../WhatsappModule/Components/Template-Selector/template-selector.component';
+import { WhatsappTemplateCreatorComponent } from '../../WhatsappModule/Components/template-creator/template-creator.component';
 const routes: Routes = [
   {path: '', component: AdminDashboardComponent, 
     children: [
@@ -20,6 +21,7 @@ const routes: Routes = [
       {path: '', redirectTo: '/dashboard/campaigns', pathMatch: 'full'},
       // Whatsapp routes
       {path:'whatsapp/templates',component:WhatsappTemplateSelectorComponent},
+      {path:'whatsapp/create',component:WhatsappTemplateCreatorComponent}
     ]
   }
 ];

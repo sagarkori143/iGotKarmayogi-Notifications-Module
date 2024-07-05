@@ -46,7 +46,10 @@ export const getTemplates = (req, res) => {
     reqGet.end();
 };
 
-// Similar updates and debugging added to other functions as well
+
+
+
+// Template creating logic function
 
 export const createTemplate = (req, res) => {
     const { senderNumber, name, language, category, allowCategoryChange, structure } = req.body;
@@ -100,6 +103,14 @@ export const createTemplate = (req, res) => {
     reqPost.end();
 };
 
+
+
+
+
+
+
+
+//Template delete function
 export const deleteTemplate = (req, res) => {
     const { senderNumber } = req.body;
     const { id } = req.params;
@@ -142,6 +153,12 @@ export const deleteTemplate = (req, res) => {
     reqDelete.end();
 };
 
+
+
+
+
+
+// Logic function to send message
 export const sendMessage = (req, res) => {
     const {
         from,

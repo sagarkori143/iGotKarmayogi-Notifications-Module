@@ -7,7 +7,7 @@ import { PropServiceService } from '../../../services/prop-service.service';
 import { WhatsappTemplateService } from '../../Services/whatsapp-service.service';
 
 @Component({
-  selector: 'app-template-selector',
+  selector: 'app-whatsapp-template-selector',
   standalone: true,
   imports: [NavbarComponent,CommonModule,HighlightPipe],
   templateUrl: './template-selector.component.html',
@@ -16,6 +16,7 @@ import { WhatsappTemplateService } from '../../Services/whatsapp-service.service
 export class WhatsappTemplateSelectorComponent {
   templates: any = null;
   selectedTemplateId: string | null = null
+  loading:boolean=true;
 
   constructor(
     private whatsappService: WhatsappTemplateService,
@@ -36,6 +37,7 @@ export class WhatsappTemplateSelectorComponent {
       },
       error => console.error('Error:', error)
     );
+    this.loading=false;
   }
 
   onRadioClick(templateId: string): void {
@@ -48,8 +50,7 @@ export class WhatsappTemplateSelectorComponent {
   }
 
   createTemplate(): void {
-    // Navigate to a component or page to create a new template
-    // this.router.navigate(['/create-template']);
+     this.router.navigate(['dashboard/whatsapp/create']);
   }
 
   navigate(): void {

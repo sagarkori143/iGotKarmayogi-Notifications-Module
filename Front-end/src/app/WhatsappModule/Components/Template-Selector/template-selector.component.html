@@ -9,6 +9,7 @@
     </div>
     <div class="Lower">
         <div class="CardsSection">
+            <div class="LoadingIndicator" *ngIf="loading"><h2>Loading...</h2></div>
             <div class="Card" *ngFor="let template of templates" (click)="selectTemplate(template)">
                 <div class="CardUpper">
                     <div class="TemplateId">
@@ -18,6 +19,9 @@
                     <input type="radio" name="selectedTemplate" [checked]="selectedTemplateId === template.id"
                         (click)="onRadioClick(template.id)">
                     <span class="radio-checkmark"></span>
+                </div>
+                <div>
+                    <span><strong>Name:</strong> {{template.name}}</span>
                 </div>
                 <p [innerHTML]="template.structure.body.text "></p>
             </div>
