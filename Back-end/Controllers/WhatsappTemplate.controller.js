@@ -1,7 +1,9 @@
 import https from 'https';
+import dotenv from 'dotenv';
+dotenv.config();
 
-const baseUrl = 'y3z1rj.api.infobip.com';
-const authorization = '59025010c55d6b69b2c385151e8acc57-e386ce3e-e134-4935-9520-2e7c49b5a778'; // without 'App' prefix as it will be added later
+const baseUrl = process.env.BASE_URL;
+const authorization = process.env.AUTHORIZATION;
 
 export const getTemplates = (req, res) => {
     console.log("Fetching templates from InfoBip")
