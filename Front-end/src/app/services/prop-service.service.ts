@@ -6,13 +6,31 @@ import { Injectable } from '@angular/core';
 export class PropServiceService {
 
   constructor() { }
-  medium:string|null=null
+  medium:string|null=null;
+  senderNumber:string|null='447860099299';
+  private selectedTemplate: any = null;
+  
+  getSenderNumber():string|null{
+    return this.senderNumber;
+  }
+  setSenderNumber(senderNumber:string):void{
+    this.senderNumber=senderNumber;
+  }
+
+  getSelectedTemplate(): any {
+    return this.selectedTemplate;
+  }
+
+  setSelectedTemplate(template: any): void {
+    this.selectedTemplate = template;
+  }
+
 
   getMedium():string|null{
     return this.medium
   }
 
-  setMedium(medium:string|null){
+  setMedium(medium:string|null):void{
     this.medium=medium
   }
 }
