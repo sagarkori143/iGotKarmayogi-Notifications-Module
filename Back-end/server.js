@@ -10,6 +10,7 @@ import { errorHandler,notfound } from './middlewares/error.js';
 import AuthRouter from './Routes/Auth.routes.js';
 import TemplateRouter from './Routes/Template.routes.js';
 import EmailRouter from './Routes/Email.routes.js';
+import WhatsappRouter from './Routes/Whatsapp.routes.js';
 
 // Initialize express
 const app = express();
@@ -32,6 +33,7 @@ app.use(bodyParser.json());
 app.use('/api/auth', AuthRouter);
 app.use('/api/templates', TemplateRouter);
 app.use('/api/email', EmailRouter);
+app.use('/api/whatsapp',WhatsappRouter);
 
 
 // Error handling middlewares

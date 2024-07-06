@@ -1,0 +1,24 @@
+<form (ngSubmit)="onSubmit()" #templateForm="ngForm">
+    <div>
+        <label for="name">Template Name:</label>
+        <input type="text" id="name" [(ngModel)]="name" name="name" required>
+    </div>
+    <div>
+        <label for="category">Category:</label>
+        <select id="category" [(ngModel)]="category" name="category" required>
+            <option value="UTILITY">UTILITY</option>
+            <option value="MARKETING">MARKETING</option>
+            <option value="AUTHENTICATION">AUTHENTICATION</option>
+        </select>
+    </div>
+    <div>
+        <label for="bodyText">Body Text:</label>
+        <textarea id="bodyText" [(ngModel)]="bodyText" name="bodyText" required></textarea>
+    </div>
+    <div *ngFor="let example of examples; let i = index">
+        <label for="example{{i}}">Example {{i + 1}}:</label>
+        <input type="text" id="example{{i}}" [(ngModel)]="examples[i]" name="example{{i}}">
+    </div>
+    <button type="button" (click)="addExample()">Add Example</button>
+    <button type="submit">Submit</button>
+</form>
