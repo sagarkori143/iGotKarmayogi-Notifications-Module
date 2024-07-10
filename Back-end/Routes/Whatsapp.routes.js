@@ -6,7 +6,7 @@ const WhatsappRouter = express.Router();
 
 // Whatsapp Template routes
 WhatsappRouter.get("/templates", verify, roleAuthorization(['Admin']), getTemplates);
-WhatsappRouter.get("/template/:id",roleAuthorization(['Admin']),getSingleTemplate)
+WhatsappRouter.get("/template",verify,roleAuthorization(['Admin']),getSingleTemplate);
 WhatsappRouter.post("/template/create", verify, roleAuthorization(['Admin']), createTemplate);
 WhatsappRouter.delete("/template/delete/:id", verify, roleAuthorization(['Admin']), deleteTemplate);
 

@@ -48,9 +48,8 @@ export const getTemplates = (req, res) => {
 
 export const getSingleTemplate = (req, res) => {
     console.log("Running the getSingleTemplate function to fetch template")
-    const {senderNumber}=req.body;
-    const {  templateId } = req.params;
-  
+    const senderNumber = req.query.senderNumber; // Extract senderNumber from query string
+  const templateId = req.query.templateId;
     const options = {
       method: 'GET',
       hostname: baseUrl,
@@ -67,7 +66,6 @@ export const getSingleTemplate = (req, res) => {
   
       resGet.on("data", function (chunk) {
         chunks.push(chunk);
-        console.log("Template fetched successfully.")
       });
   
       resGet.on("end", function () {
