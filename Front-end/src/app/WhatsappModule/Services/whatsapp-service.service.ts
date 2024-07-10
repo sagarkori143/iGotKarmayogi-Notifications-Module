@@ -21,6 +21,15 @@ export class WhatsappTemplateService {
     return this.http.get(`${this.apiUrl}/templates`, {withCredentials:true, params });
   }
 
+  getSingleTemplate(templateId: string): Observable<any> {
+    const senderNumber = this.propService.getSenderNumber();
+    if (!senderNumber) {
+      throw new Error('Sender number is not set');
+    }
+    const params = new HttpParams().set('senderNumber', senderNumber);
+    return this.http.get(`${this.apiUrl}/template/${templateId}`, { withCredentials: true,params });
+  }
+
   createTemplate(template: any): Observable<any> {
     const senderNumber = this.propService.getSenderNumber();
     if (!senderNumber) {

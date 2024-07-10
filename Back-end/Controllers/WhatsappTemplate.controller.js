@@ -46,7 +46,44 @@ export const getTemplates = (req, res) => {
     reqGet.end();
 };
 
-
+export const getSingleTemplate = (req, res) => {
+    console.log("Running the getSingleTemplate function to fetch template")
+    const {senderNumber}=req.body;
+    const {  templateId } = req.params;
+  
+    const options = {
+      method: 'GET',
+      hostname: baseUrl,
+      path: `/whatsapp/2/senders/${senderNumber}/templates/${templateId}`,
+      headers: {
+        'Authorization': `App ${authorization}`,
+        'Accept': 'application/json'
+      },
+      maxRedirects: 20
+    };
+  
+    const reqGet = https.request(options, function (resGet) {
+      let chunks = [];
+  
+      resGet.on("data", function (chunk) {
+        chunks.push(chunk);
+        console.log("Template fetched successfully.")
+      });
+  
+      resGet.on("end", function () {
+        const body = Buffer.concat(chunks);
+        res.status(resGet.statusCode).json(JSON.parse(body.toString()));
+      });
+  
+      resGet.on("error", function (error) {
+        console.error('Request Error:', error);
+        res.status(500).json({ error: error.message });
+      });
+    });
+  
+    reqGet.end();
+  };
+  
 
 
 // Template creating logic function
