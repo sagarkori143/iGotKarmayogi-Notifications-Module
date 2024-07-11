@@ -24,6 +24,9 @@
                     <span><strong>Name:</strong> {{template.name}}</span>
                 </div>
                 <p [innerHTML]="template.structure.body.text "></p>
+                <p [ngClass]="{'Rejected': template.status === 'REJECTED', 'Approved': template.status === 'APPROVED'}">
+                    {{template.status}}
+                </p> 
             </div>
         </div>
         <div class="SubmitButton">

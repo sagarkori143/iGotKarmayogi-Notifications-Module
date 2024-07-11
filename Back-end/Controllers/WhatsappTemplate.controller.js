@@ -195,77 +195,86 @@ export const deleteTemplate = (req, res) => {
 
 // Logic function to send message
 export const sendMessage = (req, res) => {
-    const {
-        from,
-        to,
-        messageId,
-        templateName,
-        placeholders,
-        language,
-        callbackData,
-        notifyUrl,
-        urlOptions
-    } = req.body;
+    console.log("This is the data recieved at be: ",req.body)
+    try {
+        const {
+            from,
+            to,
+            messageId,
+            templateName,
+            placeholders,
+            language,
+            callbackData,
+            notifyUrl,
+            urlOptions
+        } = req.body;
 
-    const postData = JSON.stringify({
-        messages: [
-            {
-                from,
-                to,
-                messageId,
-                content: {
-                    templateName,
-                    templateData: {
-                        body: {
-                            placeholders
-                        }
+        if (!from || !to || !messageId || !templateName || !language) {
+            console.log(from,to,messageId,templateName,language)
+            throw new Error('Missing required fields');
+        }
+
+        const postData = JSON.stringify({
+            messages: [
+                {
+                    from,
+                    to,
+                    messageId,
+                    content: {
+                        templateName,
+                        templateData: {
+                            body: { placeholders }
+                        },
+                        language
                     },
-                    language
-                },
-                callbackData,
-                notifyUrl,
-                urlOptions
-            }
-        ]
-    });
-
-    const options = {
-        method: 'POST',
-        hostname: baseUrl,
-        path: '/whatsapp/1/message/template',
-        headers: {
-            'Authorization': `App ${authorization}`,
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        },
-        maxRedirects: 20
-    };
-
-    // Debugging: Log the request options and data to verify correctness
-    console.log('Request Options:', options);
-    console.log('Post Data:', postData);
-
-    const reqPost = https.request(options, function (resPost) {
-        let chunks = [];
-
-        resPost.on("data", function (chunk) {
-            chunks.push(chunk);
+                    callbackData,
+                    notifyUrl,
+                    urlOptions
+                }
+            ]
         });
 
-        resPost.on("end", function () {
-            const body = Buffer.concat(chunks);
-            // Debugging: Log the response status and body
-            console.log('Response Status:', resPost.statusCode);
-            console.log('Response Body:', body.toString());
-            res.status(resPost.statusCode).json(JSON.parse(body.toString()));
+        const options = {
+            method: 'POST',
+            hostname: baseUrl,
+            path: '/whatsapp/1/message/template',
+            headers: {
+                'Authorization': `App ${authorization}`,
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            maxRedirects: 20
+        };
+
+        const reqPost = https.request(options, function (resPost) {
+            let chunks = [];
+
+            resPost.on("data", function (chunk) {
+                chunks.push(chunk);
+            });
+
+            resPost.on("end", function () {
+                const body = Buffer.concat(chunks);
+                console.log('Response Status:', resPost.statusCode);
+                console.log('Response Body:', body.toString());
+                res.status(resPost.statusCode).json(JSON.parse(body.toString()));
+            });
+
+            resPost.on("error", function (error) {
+                console.error('Request Error:', error);
+                res.status(500).json({ error: error.message });
+            });
         });
 
-        resPost.on("error", function (error) {
+        reqPost.on('error', (error) => {
             console.error('Request Error:', error);
             res.status(500).json({ error: error.message });
         });
-    });
 
-    reqPost.write(postData);
-    reqPost.end();
+        reqPost.write(postData);
+        reqPost.end();
+    } catch (error) {
+        console.error('Error in sendMessage:', error);
+        res.status(400).json({ error: error.message });
+    }
 };
