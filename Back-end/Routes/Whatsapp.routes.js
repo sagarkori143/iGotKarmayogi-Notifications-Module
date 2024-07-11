@@ -1,4 +1,4 @@
-import { createTemplate, getTemplates, deleteTemplate, sendMessage } from "../Controllers/WhatsappTemplate.controller.js";
+import { createTemplate, getTemplates,getSingleTemplate, deleteTemplate, sendMessage } from "../Controllers/WhatsappTemplate.controller.js";
 import express from "express";
 import { verify, roleAuthorization } from "../middlewares/authenticated.js";
 
@@ -6,6 +6,7 @@ const WhatsappRouter = express.Router();
 
 // Whatsapp Template routes
 WhatsappRouter.get("/templates", verify, roleAuthorization(['Admin']), getTemplates);
+WhatsappRouter.get("/template",verify,roleAuthorization(['Admin']),getSingleTemplate);
 WhatsappRouter.post("/template/create", verify, roleAuthorization(['Admin']), createTemplate);
 WhatsappRouter.delete("/template/delete/:id", verify, roleAuthorization(['Admin']), deleteTemplate);
 

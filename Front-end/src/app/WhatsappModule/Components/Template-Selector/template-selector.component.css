@@ -91,6 +91,12 @@ body {
     margin-top: 1.25rem;
     margin-left: 4rem;
   }
+  .Approved{
+    color: green;
+  }
+  .Rejected{
+    color: red;
+  }
   
   .SubmitButton {
     display: flex;
@@ -122,4 +128,3 @@ body {
       color: #1B4CA1;
       font-weight: 500;
     }
-  

@@ -21,6 +21,16 @@ export class WhatsappTemplateService {
     return this.http.get(`${this.apiUrl}/templates`, {withCredentials:true, params });
   }
 
+  getSingleTemplate(templateId: string): Observable<any> {
+    const senderNumber = this.propService.getSenderNumber();
+    if (!senderNumber) {
+      throw new Error('Sender number is not set');
+    }
+    let params = new HttpParams().set('senderNumber', senderNumber);
+    params = params.append('templateId', templateId);
+    return this.http.get(`${this.apiUrl}/template`, { withCredentials: true,params });
+  }
+
   createTemplate(template: any): Observable<any> {
     const senderNumber = this.propService.getSenderNumber();
     if (!senderNumber) {
@@ -41,7 +51,7 @@ export class WhatsappTemplateService {
   }
 
   sendMessage(messageData: any): Observable<any> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post(`${this.apiUrl}/message`, messageData, { headers });
+    console.log("This data will be passed to backend: ",messageData)
+    return this.http.post(`${this.apiUrl}/message`, messageData, { withCredentials:true});
   }
 }
