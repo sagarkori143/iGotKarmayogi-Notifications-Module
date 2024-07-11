@@ -17,15 +17,25 @@ export class WhatsappTemplateSelectorComponent {
   templates: any = null;
   selectedTemplateId: string | null = null
   loading:boolean=true;
+  currentPage: number = 0;
+  pageSize: number = 4;
+  templatesloaded:boolean=false;
 
   constructor(
     private whatsappService: WhatsappTemplateService,
     private propService: PropServiceService,
     private router: Router
   ) { }
-
   ngOnInit(): void {
     this.getTemplates();
+  }
+
+   nextPage() {
+    const totalPages = Math.ceil(this.templates.length / this.pageSize);
+    this.currentPage = (this.currentPage + 2) % totalPages;
+  }
+  prevPage() {
+    this.currentPage = Math.max(this.currentPage - 1, 0);
   }
 
   getTemplates(): void {
@@ -33,6 +43,7 @@ export class WhatsappTemplateSelectorComponent {
       data => {
         this.templates = data.templates,
         console.log(data);
+        this.templatesloaded=true;
       },
       error => console.error('Error:', error)
     );

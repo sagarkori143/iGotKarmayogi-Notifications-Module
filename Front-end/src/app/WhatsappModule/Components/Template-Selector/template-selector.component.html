@@ -1,16 +1,8 @@
-<!-- select-template.component.html -->
 <div class="Container">
-    <div class="Upper">
-        <h2>Whatsapp Service</h2>
-        <div class="Header">
-            <h3>Choose Template --></h3>
-            <button (click)="createTemplate()">New Template</button>
-        </div>
-    </div>
-    <div class="Lower">
-        <div class="CardsSection">
-            <div class="LoadingIndicator" *ngIf="loading"><h2>Loading...</h2></div>
-            <div class="Card" *ngFor="let template of templates" (click)="selectTemplate(template)">
+    <div class="SubContainer">
+        <div class="CardsSection" [style.transform]="'translateX(' + (-currentPage * (25 + 20)) + '%)'">
+            <div class="Card" *ngFor="let template of templates; let i = index"
+                [style.margin-right.px]="i === templates.length - 1 ? 0 : 20" (click)="selectTemplate(template)">
                 <div class="CardUpper">
                     <div class="TemplateId">
                         <h3>Template Id</h3>
@@ -23,14 +15,13 @@
                 <div>
                     <span><strong>Name:</strong> {{template.name}}</span>
                 </div>
-                <p [innerHTML]="template.structure.body.text "></p>
-                <p [ngClass]="{'Rejected': template.status === 'REJECTED', 'Approved': template.status === 'APPROVED'}">
-                    {{template.status}}
-                </p> 
+                <p [innerHTML]="template.structure.body.text"></p>
             </div>
         </div>
-        <div class="SubmitButton">
-            <button [disabled]="!selectedTemplateId" (click)="navigate()">Select</button>
-        </div>
+        <button *ngIf="templatesloaded && currentPage!=0" (click)="prevPage()" class="Prev">←</button>
+        <button *ngIf="templatesloaded" (click)="nextPage()" class="Next">→</button>
+    </div>
+    <div class="SubmitButton">
+        <button [disabled]="!selectedTemplateId" (click)="navigate()">Select</button>
     </div>
 </div>
