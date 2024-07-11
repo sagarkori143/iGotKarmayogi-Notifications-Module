@@ -4,10 +4,10 @@ body {
 
 .Container {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     padding: 20px 10px;
-    padding-inline: 15px;
+    padding-inline: 25px;
     width: vw;
     background-color: #FDE5CD;
 }
@@ -16,26 +16,26 @@ body {
     mix-blend-mode: multiply;
     cursor: pointer;
 }
-
-.MainArea {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 70%;
-    border: solid black 1.5px;
-    margin-inline: 25px;
-    padding-inline: 25px;
-    border-radius: 30px;
-    height: 60px;
-    background-color: white;
-    font-family: 'Poppins', sans-serif;
-    font-size: 14px;
+.Search{
+    width: 50%;
+}
+.Search input{
+ width: 100%;
+ height: 3rem;
+ border-radius: 25px;
+ border: solid gray 1px;
+ padding-inline: 20px;
+ font-size: 1.1rem;
+}
+.Search input:focus{
+    outline: solid #184486;
+    
 }
 
-.MainArea button {
-    height: 65%;
+ button {
+    height: 2.8rem;
     margin-right: 15px;
-    width: 100px;
+    width: 8rem;
     border-radius: 30px;
     font-family: 'Poppins', sans-serif;
     cursor: pointer;
@@ -43,7 +43,7 @@ body {
     font-weight: bold;
     border: solid #184486 2px;
 }
-.MainArea button:hover{
+ button:hover{
     background-color: #184486;
     color: white;
 
