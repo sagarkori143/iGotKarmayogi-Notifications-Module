@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TemplateSelectorComponent } from './template-selector.component';
+import { WhatsappTemplateSelectorComponent } from './template-selector.component';
 
 describe('TemplateSelectorComponent', () => {
-  let component: TemplateSelectorComponent;
-  let fixture: ComponentFixture<TemplateSelectorComponent>;
+  let component: WhatsappTemplateSelectorComponent;
+  let fixture: ComponentFixture<WhatsappTemplateSelectorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TemplateSelectorComponent]
+      imports: [WhatsappTemplateSelectorComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TemplateSelectorComponent);
+    fixture = TestBed.createComponent(WhatsappTemplateSelectorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

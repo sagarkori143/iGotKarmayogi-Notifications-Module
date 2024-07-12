@@ -25,7 +25,6 @@ export class WhatsappTemplateSelectorComponent {
   ) { }
 
   ngOnInit(): void {
-    
     this.getTemplates();
   }
 
@@ -54,9 +53,11 @@ export class WhatsappTemplateSelectorComponent {
   }
 
   navigate(): void {
-   // if (this.selectedTemplateId) {
- //     this.router.navigate(['/send-message']);
-  //  }
+    if(this.selectedTemplateId){
+      this.router.navigate(['dashboard/whatsapp/use',this.selectedTemplateId])
+    }else{
+      console.log("Please select a template first then click submit.")
+    }
   }
   
 }
