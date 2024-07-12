@@ -23,6 +23,7 @@ export class WhatsappTemplateSelectorComponent {
   selectedTemplateId: string | null = null
   loading:boolean=true;
   currentPage: number = 0;
+  totalPages:number=1;
   pageSize: number = 4;
   templatesloaded:boolean=false;
   showPopup: boolean = false;
@@ -37,8 +38,10 @@ export class WhatsappTemplateSelectorComponent {
   }
 
    nextPage() {
-    const totalPages = Math.ceil(this.templates.length / this.pageSize);
-    this.currentPage = (this.currentPage + 2) % totalPages;
+    if(this.currentPage<this.totalPages){
+      this.totalPages = Math.ceil(this.templates.length / this.pageSize);
+      this.currentPage = this.currentPage + 1;
+    }
   }
   prevPage() {
     this.currentPage = Math.max(this.currentPage - 1, 0);

@@ -53,8 +53,8 @@ export class WhatsappTemplateCreatorComponent implements OnInit {
         type: 'TEXT'
       }
     };
-
     console.log('Template creation started');
+    console.log(templateData.structure.body.examples)
     this.whatsappService.createTemplate(templateData).subscribe(
       data => {
         console.log(data);
@@ -64,9 +64,9 @@ export class WhatsappTemplateCreatorComponent implements OnInit {
       error => {
         console.error('Error:', error);
         alert("Some error occurred while creating template!")
+        console.log("Template was not creatred because: ",error)
       }
     );
-    console.log('Template creation process completed');
   }
 
   closeDetails() {

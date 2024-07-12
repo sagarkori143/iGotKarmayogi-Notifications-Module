@@ -37,21 +37,29 @@ body {
     outline: none;
     
 }
-
- button {
-    height: 2.8rem;
-    margin-right: 15px;
-    width: 8rem;
+.LogOut{
+    display: flex;
+    align-items: center;
     border-radius: 30px;
+    padding-inline: 10px;
     font-family: 'Poppins', sans-serif;
     cursor: pointer;
     color: #184486;
     font-weight: bold;
-    border: solid #184486 2px;
+    border: solid gray 2px;
     background-color: transparent;
+    cursor: pointer;
 }
- button:hover{
-    background-color: #184486;
+ button {
+    height: 2.8rem;
+    border-radius: 30px;
+    font-family: 'Poppins', sans-serif;
+    border: none;
+    background-color: transparent;
+    font-size: 17px;
+    cursor: pointer;
+}
+.LogOut:hover{
     color: white;
-
+    border: solid #184486 2px;
 }
