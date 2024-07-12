@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WhatsappTemplateService } from '../../Services/whatsapp-service.service';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-whatsapp-template-user',
@@ -12,8 +12,7 @@ import { FormsModule } from '@angular/forms';
   imports:[FormsModule,CommonModule]
 })
 export class WhatsappTemplateUserComponent implements OnInit {
-
-  templateData: any; // Define your template data model
+  templateData: any;
   loading: boolean = true;
   previewText: string = '';
   fields: string[] = [];
@@ -38,10 +37,9 @@ export class WhatsappTemplateUserComponent implements OnInit {
     this.whatsappService.getSingleTemplate(templateId).subscribe(
       template => {
         this.templateData = template;
-        console.log(template)
         this.loading = false;
         this.initializeFields();
-        this.updatePreview(); // Update preview initially
+        this.updatePreview();
       },
       error => {
         console.error('Error fetching template:', error);
@@ -49,49 +47,48 @@ export class WhatsappTemplateUserComponent implements OnInit {
       }
     );
   }
- 
+
   initializeFields(): void {
     const fieldCount = (this.templateData?.structure.body.text.match(/{{\d+}}/g) || []).length;
     this.fields = Array(fieldCount).fill('');
   }
 
-  updatePreview(): void {
+  updatePreview() {
     if (!this.templateData?.structure.body.text) {
       return;
     }
+
     let updatedText = this.templateData.structure.body.text;
-    if(this.fields.length>0){
-      this.fields.forEach((field, index) => {
-        const placeholder = `{{${index + 1}}}`;
-        updatedText = updatedText.replace(placeholder, field);
-      });
-    }
+
+    this.fields.forEach((field, index) => {
+      const placeholder = `{{${index + 1}}}`;
+      updatedText = updatedText.replace(placeholder, field || placeholder);
+    });
+
     this.previewText = updatedText;
   }
 
   sendMessage(): void {
-  const messageBody = {
-        
-                from: "919027527049",
-                to: this.recipientNumber,
-                messageId: "a28dd97c-1ffb-4fcf-99f1-0b557ed381da",
-                templateName: this.templateData.name,
-                placeholders: this.fields,
-                language: "en",
-                callbackData: "Callback data",
-                notifyUrl: "https://www.example.com/whatsapp"
- };
+    const messageBody = {
+      from: "919027527049",
+      to: this.recipientNumber,
+      messageId: "a28dd97c-1ffb-4fcf-99f1-0b557ed381da",
+      templateName: this.templateData.name,
+      placeholders: this.fields,
+      language: "en",
+      callbackData: "Callback data",
+      notifyUrl: "https://www.example.com/whatsapp"
+    };
 
     this.whatsappService.sendMessage(messageBody).subscribe(
-        messageResponse => {
-            console.log("Message response:", messageResponse);
-            alert("The message sent successfully.");
-        },
-        error => {
-            console.error("Error sending message:", error);
-            alert("Failed to send message. Please try again.");
-        }
+      messageResponse => {
+        console.log("Message response:", messageResponse);
+        alert("The message sent successfully.");
+      },
+      error => {
+        console.error("Error sending message:", error);
+        alert("Failed to send message. Please try again.");
+      }
     );
-}
-
+  }
 }

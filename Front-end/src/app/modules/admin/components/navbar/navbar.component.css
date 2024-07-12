@@ -18,7 +18,7 @@ body {
 }
 .Search{
     width: 50%;
-    border: solid gray 1px;
+    border: solid gray 2px;
     display: flex;
     justify-content: center;
     align-items: center;
