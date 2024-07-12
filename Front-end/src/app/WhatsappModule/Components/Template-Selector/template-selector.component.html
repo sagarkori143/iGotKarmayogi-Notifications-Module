@@ -15,7 +15,7 @@
                 <div>
                     <span><strong>Name:</strong> {{template.name}}</span>
                 </div>
-                <p [innerHTML]="template.structure.body.text"></p>
+                <p [innerHTML]="template.structure.body.text | removeBraces"></p>
             </div>
         </div>
         <button *ngIf="templatesloaded && currentPage!=0" (click)="prevPage()" class="Prev">←</button>

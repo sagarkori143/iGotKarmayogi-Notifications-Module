@@ -18,17 +18,23 @@ body {
 }
 .Search{
     width: 50%;
+    border: solid gray 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    background-color: white;
 }
 .Search input{
- width: 100%;
+ width: 80%;
  height: 3rem;
  border-radius: 25px;
- border: solid gray 1px;
+ border: none;
  padding-inline: 20px;
  font-size: 1.1rem;
 }
 .Search input:focus{
-    outline: solid #184486;
+    outline: none;
     
 }
 

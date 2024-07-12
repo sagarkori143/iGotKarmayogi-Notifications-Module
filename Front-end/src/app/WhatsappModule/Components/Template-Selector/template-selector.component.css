@@ -147,11 +147,7 @@ body {
   margin-left: 4rem;
 }
 
-.Approved {
-  color: green;
-}
-
-.Rejected {
+:host ::ng-deep .example-text {
   color: red;
 }
 

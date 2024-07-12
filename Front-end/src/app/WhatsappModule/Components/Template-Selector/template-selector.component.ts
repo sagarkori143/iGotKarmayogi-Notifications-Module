@@ -5,11 +5,12 @@ import { HighlightPipe } from '../../../pipes/highlighter.pipe';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PropServiceService } from '../../../services/prop-service.service';
 import { WhatsappTemplateService } from '../../Services/whatsapp-service.service';
+import { RemoveBracesPipe } from '../../Services/braces-transform.pipe';
 
 @Component({
   selector: 'app-whatsapp-template-selector',
   standalone: true,
-  imports: [NavbarComponent,CommonModule,HighlightPipe],
+  imports: [NavbarComponent,CommonModule,RemoveBracesPipe],
   templateUrl: './template-selector.component.html',
   styleUrl: './template-selector.component.css'
 })
