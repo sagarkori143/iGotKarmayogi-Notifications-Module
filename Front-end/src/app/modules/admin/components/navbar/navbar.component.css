@@ -48,6 +48,7 @@ body {
     color: #184486;
     font-weight: bold;
     border: solid #184486 2px;
+    background-color: transparent;
 }
  button:hover{
     background-color: #184486;

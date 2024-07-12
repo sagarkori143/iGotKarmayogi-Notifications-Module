@@ -12,6 +12,10 @@ body {
   overflow: hidden;
   position: relative;
 }
+.Upper{
+  display: flex;
+  flex-direction: column;
+}
 
 .Upper h2 {
   margin-inline: 3rem;
@@ -52,7 +56,7 @@ body {
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 25%;
+  top: 50%;
   left: 10px;
   border-radius: 40px;
   padding: 10px;
@@ -66,7 +70,7 @@ body {
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 25%;
+  top: 50%;
   right: 10px;
   border-radius: 40px;
   padding: 10px;
