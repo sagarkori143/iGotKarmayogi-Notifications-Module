@@ -86,7 +86,14 @@ select {
 }
 
 select {
-    font-size: 17px;
+    height: 3.2rem;
+    width: 320px;
+    font-size: 1.6rem;
+    font-family: 'Poppins', sans-serif;
+}
+select option{
+    font-size: 1.1rem;
+    font-family: 'Poppins', sans-serif;
 }
 
 .form input,
@@ -102,8 +109,9 @@ select:focus {
 
 .fields {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 1rem;
+    gap: 1.5rem;
 }
 
 .ExampleAdder button {

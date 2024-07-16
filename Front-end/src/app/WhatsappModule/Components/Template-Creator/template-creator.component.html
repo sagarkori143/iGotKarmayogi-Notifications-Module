@@ -1,4 +1,4 @@
-<div class="popup-container" [@popupAnimation]="true" (click)="closeDetails()">
+<div class="popup-container"  (click)="closeDetails()">
     <div class="popup" [ngClass]="{'closing': isClosing}" (click)="$event.stopPropagation()">
         <h1><strong>Create New Template</strong></h1>
         <form (ngSubmit)="onSubmit()" #templateForm="ngForm" class="form">

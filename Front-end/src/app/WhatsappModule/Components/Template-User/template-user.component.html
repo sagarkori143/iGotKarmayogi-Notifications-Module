@@ -10,12 +10,12 @@
       <h3>Fill Template Fields</h3>
       <form (ngSubmit)="sendMessage()" class="form">
         <div *ngFor="let field of fields; let i = index" class="fields">
-          <label for="field{{ i }}">Field {{ i + 1 }}</label>
+          <label for="field{{ i }}">Field {{ i + 1 }}:</label>
           <input type="text" id="field{{ i }}" [(ngModel)]="fields[i]" (input)="updatePreview()" name="field{{ i }}"
             class="form-control" />
         </div>
         <div class="form-group">
-          <label for="recipient">Recipient Number</label>
+          <label for="recipient">Recipient Number:</label>
           <input type="text" id="recipient" [(ngModel)]="recipientNumber" name="recipient" class="form-control" />
         </div>
         <button type="submit" class="btn btn-primary">Send Message</button>
