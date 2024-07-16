@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../navbar/navbar.component';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { HighlightPipe } from '../../../../pipes/highlighter.pipe';
 import { PropServiceService } from '../../services/propService/prop-service.service';
 import { catchError } from 'rxjs/operators';
@@ -47,17 +47,27 @@ export class TemplateSelectorComponent implements OnInit {
       }
     );
   }
+
   selectTemplate(template: any) {
     this.selectedTemplateId = this.selectedTemplateId === template.id ? null : template.id;
   }
 
-  onRadioClick(templateId: number) {
+  onRadioClick(event: Event, templateId: number) {
+    event.stopPropagation(); // Prevent the event from bubbling up
     this.selectedTemplateId = templateId;
   }
 
   navigator() {
     if (this.selectedTemplateId !== null) {
-      this.router.navigate(['/usetemplate', this.selectedTemplateId]);
+      const selectedTemplate = this.templates.find(t => t._id === this.selectedTemplateId);
+      console.log('Selected Template ID:', this.selectedTemplateId);
+      console.log('Selected Template Data:', selectedTemplate);
+      const navigationExtras: NavigationExtras = {
+        state: {
+          template: selectedTemplate
+        }
+      };
+      this.router.navigate(['/dashboard/usetemplate', this.selectedTemplateId], navigationExtras);
     }
   }
 

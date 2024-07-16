@@ -1,5 +1,22 @@
 <div class="Container">
-    <p>use-template works!</p>
-<h1>This is the page where we will do further operations after selecting a template from the templates list!</h1>
-
-</div>
+    <h1>{{ template?.Subject }}</h1>
+    <p>{{ template?.Content }}</p>
+    
+    <div *ngIf="template">
+      <h3>Fill in variables:</h3>
+      <form (ngSubmit)="submitForm()">
+        <ng-container *ngFor="let variable of extractVariables(template?.Content); let i = index">
+          <div class="form-group">
+            <label for="input{{ i }}">{{ variable }}</label>
+            <input type="text" id="input{{ i }}" name="input{{ i }}" class="form-control" [(ngModel)]="variableValues[variable]">
+          </div>
+          <!-- Debugging output -->
+          <p>Variable: {{ variable }}</p>
+          <p>Value in variableValues: {{ variableValues[variable] }}</p>
+        </ng-container>
+        
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+  

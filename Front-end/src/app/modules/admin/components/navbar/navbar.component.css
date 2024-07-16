@@ -8,6 +8,7 @@ body {
     align-items: center;
     padding: 20px 10px;
     padding-inline: 15px;
+    height: 10vh;
     width: vw;
     background-color: #FDE5CD;
 }

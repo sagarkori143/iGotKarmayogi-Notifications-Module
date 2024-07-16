@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Papa } from 'ngx-papaparse';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute,Router } from '@angular/router';
 @Component({
   selector: 'app-user-data',
   standalone: true,
@@ -14,7 +15,18 @@ export class UserDataComponent {
   newUser: { name: string, phoneNo: string } = { name: '', phoneNo: '' };
   showAddForm = false;
   showFilePopup = false;
-  constructor(private papa: Papa) {}
+  template: any;
+  replacedContent: string = '';
+
+  constructor(private papa: Papa ,private route: ActivatedRoute,private router: Router) {
+    const navigation = this.router.getCurrentNavigation();
+    if (navigation?.extras?.state) {
+      this.template = navigation.extras.state['template'];
+      this.replacedContent = navigation.extras.state['replacedContent'];
+      console.log('Received Template Data in constructor:', this.template);
+      console.log('Received Replaced Content in constructor:', this.replacedContent);
+    }
+  }
 
   addUser() {
     if (this.newUser.name && this.newUser.phoneNo) {
@@ -23,6 +35,8 @@ export class UserDataComponent {
       this.showAddForm = false;
     }
   }
+
+
 
   onFileSelected(event: any) {
     const file = event.target.files[0];

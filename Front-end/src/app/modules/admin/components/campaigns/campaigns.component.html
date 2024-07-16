@@ -2,8 +2,10 @@
     <div class="Content">
       <div *ngFor="let event of EventsList" class="CampaignBox" [routerLink]="['/dashboard/type']">
           <img src={{event.img}}/>
-          <h3>{{event.title}}</h3>
-          <p>{{event.description}}</p>
+          <div>
+            <h3>{{event.title}}</h3>
+            <p>{{event.description}}</p>
+          </div>
       </div>
     </div>
     

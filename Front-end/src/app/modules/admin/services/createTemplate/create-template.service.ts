@@ -7,11 +7,11 @@ import { Observable } from 'rxjs';
 })
 export class TemplateService {
 
-  private apiUrl = 'https://api.example.com/templates'; // Replace with your API endpoint
+  private apiUrl = 'http://localhost:5000/api/templates/create'; // Replace with your API endpoint
 
   constructor(private http: HttpClient) { }
 
   createTemplate(templateData: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl, templateData);
+    return this.http.post<any>(this.apiUrl, templateData,{withCredentials:true});
   }
 }

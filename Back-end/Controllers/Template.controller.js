@@ -43,30 +43,12 @@ const getTemplates = asyncHandler(async (req, res) => {
 const createTemplate = asyncHandler(async (req, res) => {
     try {
 
-        const schema = z.object({
-            Subject: z.string(),
-            Content: z.string(),
-            type: z.string(),
-            templateId: z.string(),
-        });
-
-        const input  = req.body;
-
-        const parsedInput = schema.safeParse(input);
-
-        if (parsedInput.success === false) {
-            return res.status(400).json({
-                success: false,
-                message: "Invalid Input",
-            });
-        }
-
-        const { Subject, Content, type ,templateId } = parsedInput.data;
+        const { subject, content, category ,templateId } = req.body;
         const template = await Template.create({
-            Subject,
-            Content,
-            type,
-            templateId,
+            Subject: subject,
+            Content: content,
+            type: category.toLowerCase(),
+            templateId: templateId
         });
         if (template) {
             return res.status(201).json({
