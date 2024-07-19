@@ -5,11 +5,13 @@ import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import ConnectDB from './DB/index.js';
 import { errorHandler,notfound } from './middlewares/error.js';
+// "start": "concurrently \"nodemon server.js\" \"nodemon Email/backend/server.js\""
 
 // Import routes
 import AuthRouter from './Routes/Auth.routes.js';
 import TemplateRouter from './Routes/Template.routes.js';
-import EmailRouter from './Routes/Email.routes.js';
+// import EmailRouter from './Routes/Email.routes.js';
+import EmailRouter from './Email/backend/routes/index.js';
 import WhatsappRouter from './Routes/Whatsapp.routes.js';
 
 // Initialize express
@@ -19,6 +21,10 @@ const app = express();
 dotenv.config();
 
 // Middlewares
+app.get('/', (req, res) => {
+    res.send("Welcome to Notifier project")
+})
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({

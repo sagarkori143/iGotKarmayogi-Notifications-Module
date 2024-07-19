@@ -10,6 +10,23 @@ import { TemplateSelectorComponent } from './components/template-selector/templa
 import { WhatsappTemplateSelectorComponent } from '../../WhatsappModule/Components/Template-Selector/template-selector.component';
 import { WhatsappTemplateCreatorComponent } from '../../WhatsappModule/Components/Template-Creator/template-creator.component';
 import { WhatsappTemplateUserComponent } from '../../WhatsappModule/Components/Template-User/template-user.component';
+
+
+import { CreateTemplateComponent } from '../../email-module/create-template/create-template.component';
+import { ConfigureTemplateComponent } from '../../email-module/configure-template/configure-template.component';
+import { ViewUserDataComponent } from '../../email-module/view-user-data/view-user-data.component';
+import { UploadUserDataComponent } from '../../email-module/upload-user-data/upload-user-data.component';
+import { SendEmailComponent } from '../../email-module/send-email/send-email.component';
+import { HistoryComponent } from '../../email-module/history/history.component';
+import { EdashboardComponent } from '../../email-module/edashboard/edashboard.component';
+
+
+
+
+
+
+
+
 const routes: Routes = [
   {path: '', component: AdminDashboardComponent, 
     children: [
@@ -23,7 +40,17 @@ const routes: Routes = [
       // Whatsapp routes
       {path:'whatsapp/templates',component:WhatsappTemplateSelectorComponent},
       {path:'whatsapp/create',component:WhatsappTemplateCreatorComponent},
-      {path:'whatsapp/use/:templateId', component:WhatsappTemplateUserComponent}
+      {path:'whatsapp/use/:templateId', component:WhatsappTemplateUserComponent},
+      //Email routes
+      { path: 'email/create-template', component: CreateTemplateComponent },
+      { path: 'email/configure-template', component: ConfigureTemplateComponent },
+      { path: 'email/view-user-data', component: ViewUserDataComponent },
+      { path: 'email/upload-user-data', component: UploadUserDataComponent },
+      { path: 'email/send-email', component: SendEmailComponent },
+      { path: 'email/history', component: HistoryComponent },
+      { path: 'email/edashboard', component: EdashboardComponent },
+      
+
     ]
   }
 ];
