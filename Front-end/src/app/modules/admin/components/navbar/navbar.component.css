@@ -4,10 +4,10 @@ body {
 
 .Container {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     padding: 20px 10px;
-    padding-inline: 15px;
+    padding-inline: 25px;
     width: vw;
     background-color: #FDE5CD;
 }
@@ -16,35 +16,50 @@ body {
     mix-blend-mode: multiply;
     cursor: pointer;
 }
-
-.MainArea {
+.Search{
+    width: 50%;
+    border: solid gray 2px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    width: 70%;
-    border: solid black 1.5px;
-    margin-inline: 25px;
-    padding-inline: 25px;
-    border-radius: 30px;
-    height: 60px;
+    border-radius: 25px;
     background-color: white;
-    font-family: 'Poppins', sans-serif;
-    font-size: 14px;
 }
-
-.MainArea button {
-    height: 65%;
-    margin-right: 15px;
-    width: 100px;
+.Search input{
+ width: 80%;
+ height: 3rem;
+ border-radius: 25px;
+ border: none;
+ padding-inline: 20px;
+ font-size: 1.1rem;
+}
+.Search input:focus{
+    outline: none;
+    
+}
+.LogOut{
+    display: flex;
+    align-items: center;
     border-radius: 30px;
+    padding-inline: 10px;
     font-family: 'Poppins', sans-serif;
     cursor: pointer;
     color: #184486;
     font-weight: bold;
-    border: solid #184486 2px;
+    border: solid gray 2px;
+    background-color: transparent;
+    cursor: pointer;
 }
-.MainArea button:hover{
-    background-color: #184486;
+ button {
+    height: 2.8rem;
+    border-radius: 30px;
+    font-family: 'Poppins', sans-serif;
+    border: none;
+    background-color: transparent;
+    font-size: 17px;
+    cursor: pointer;
+}
+.LogOut:hover{
     color: white;
-
+    border: solid #184486 2px;
 }

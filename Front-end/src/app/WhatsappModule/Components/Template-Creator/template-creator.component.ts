@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Output,EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -13,6 +13,9 @@ import { WhatsappTemplateService } from '../../Services/whatsapp-service.service
   styleUrls: ['./template-creator.component.css'] // Correct property name
 })
 export class WhatsappTemplateCreatorComponent implements OnInit {
+  @Output() close = new EventEmitter<void>();
+  isClosing:boolean=false;
+  
   senderNumber: string | null = null;
   name: string = '';
   language: string = 'en';
@@ -50,14 +53,26 @@ export class WhatsappTemplateCreatorComponent implements OnInit {
         type: 'TEXT'
       }
     };
-
     console.log('Template creation started');
+    console.log(templateData.structure.body.examples)
     this.whatsappService.createTemplate(templateData).subscribe(
       data => {
         console.log(data);
+        this.close.emit();
+        alert("Template Created Successfully!")
       },
-      error => console.error('Error:', error)
+      error => {
+        console.error('Error:', error);
+        alert("Some error occurred while creating template!")
+        console.log("Template was not creatred because: ",error)
+      }
     );
-    console.log('Template creation process completed');
+  }
+
+  closeDetails() {
+    this.isClosing = true;
+    setTimeout(() => {
+      this.close.emit();
+    }, 300); // Duration of the closing animation, adjust as necessary
   }
 }

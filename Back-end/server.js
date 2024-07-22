@@ -11,7 +11,7 @@ import { errorHandler,notfound } from './middlewares/error.js';
 import AuthRouter from './Routes/Auth.routes.js';
 import TemplateRouter from './Routes/Template.routes.js';
 // import EmailRouter from './Routes/Email.routes.js';
-import EmailRouter from './Email/backend/routes/index.js';
+import EmailRouter from './Routes/Email.routes.js';
 import WhatsappRouter from './Routes/Whatsapp.routes.js';
 
 // Initialize express
