@@ -31,6 +31,9 @@ export class MediumSelectDialogComponent {
       this.propService.setMedium(this.selectedMedium);
       if (this.selectedMedium === 'Whatsapp') {
         this.router.navigate([`/dashboard/whatsapp/templates`]);
+      } else if (this.selectedMedium === 'Email') {
+        // Update the navigation path for Email
+        this.router.navigate([`/dashboard/email/edashboard`]);
       } else {
         this.router.navigate([`/dashboard/templates/${this.selectedMedium}`]);
       }
@@ -38,7 +41,6 @@ export class MediumSelectDialogComponent {
       alert('Please select a method of communication');
     }
   }
-
   isClosing: boolean = false;
   Open: boolean = true;
 
