@@ -37,6 +37,13 @@ const routes: Routes = [
       {path: ':type/:templateId/users', component: UseTemplateComponent},
       {path: 'campaigns/users',component:UserDataComponent},
       {path: '', redirectTo: '/dashboard/campaigns', pathMatch: 'full'},
+
+      //sms routes
+      {path: 'sms', loadChildren: () => 
+        import('../../sms-module/sms-module.module').then(m => m.SMSModuleModule),
+      },
+
+
       // Whatsapp routes
       {path:'whatsapp/templates',component:WhatsappTemplateSelectorComponent},
       {path:'whatsapp/create',component:WhatsappTemplateCreatorComponent},

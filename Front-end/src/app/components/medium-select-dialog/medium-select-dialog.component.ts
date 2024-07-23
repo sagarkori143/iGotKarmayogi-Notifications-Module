@@ -35,7 +35,7 @@ export class MediumSelectDialogComponent {
         // Update the navigation path for Email
         this.router.navigate([`/dashboard/email/edashboard`]);
       } else {
-        this.router.navigate([`/dashboard/templates/${this.selectedMedium}`]);
+        this.router.navigate([`/dashboard/sms/edashboard`]);
       }
     } else {
       alert('Please select a method of communication');
