@@ -94,17 +94,17 @@ export class CreateTemplateComponent {
   onSubmit() {
     const templateData = this.templateForm.value;
     console.log('Template data:', templateData);
-    // this.http.post('http://localhost:5001/templates', templateData)
-    //   .subscribe({
-    //     next: (response) => {
-    //       console.log('Template created successfully:', response);
-    //       this.showSuccessMessage = true;
-    //       this.resetForm();
-    //     },
-    //     error: (error) => {
-    //       console.error('Error creating template:', error);
-    //     }
-    //   });
+    this.http.post('http://localhost:5000/api/templates/create', templateData,{withCredentials: true})
+      .subscribe({
+        next: (response) => {
+          console.log('Template created successfully:', response);
+          this.showSuccessMessage = true;
+          this.resetForm();
+        },
+        error: (error) => {
+          console.error('Error creating template:', error);
+        }
+      });
   }
 
   resetForm() {
