@@ -59,16 +59,19 @@
   }
   
   .btn-primary {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
     position: absolute;
     right: 5%;
     bottom: 8%;
     
-    padding: 10px 20px;
+    margin-right: 2rem;
+    padding: 0.7rem;
+    padding-inline: 4rem;
+    background-color: #0a316c;
+    border: none;
+    border-radius: 10px;
+    color: white;
     cursor: pointer;
-    border-radius: 4px;
+    font-size: 1rem;
   }
   
   .btn-primary:hover {
