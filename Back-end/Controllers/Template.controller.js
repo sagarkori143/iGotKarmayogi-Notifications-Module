@@ -98,5 +98,28 @@ const deleteTemplate = asyncHandler(async (req, res) => {
     }
 });
 
+const updateTemplate = asyncHandler(async (req, res) => {
+    try {
+        const templateId = req.params.id;
+        const { body } = req.body;
 
-export { getTemplates, createTemplate, deleteTemplate };
+        const template = await Template.findOneAndUpdate({ templateId }, { body });
+
+        if (template) {
+            return res.status(200).json({
+                success: true,
+                message: "Template updated successfully",
+            });
+        }
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+    }
+}
+);
+
+
+export { getTemplates, createTemplate, deleteTemplate,updateTemplate };
