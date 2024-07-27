@@ -97,29 +97,38 @@ const deleteTemplate = asyncHandler(async (req, res) => {
         });
     }
 });
-
 const updateTemplate = asyncHandler(async (req, res) => {
     try {
         const templateId = req.params.id;
-        const { body } = req.body;
+        const { content } = req.body;
 
-        const template = await Template.findOneAndUpdate({ templateId }, { body });
+        console.log("Template ID:", templateId);
+        console.log("Request Body:", req.body);
+
+        // Find and update the template by its _id
+        const template = await Template.findByIdAndUpdate(templateId, { 
+            Content: content 
+        }, { new: true });
 
         if (template) {
             return res.status(200).json({
                 success: true,
                 message: "Template updated successfully",
             });
+        } else {
+            return res.status(404).json({
+                success: false,
+                message: "Template not found",
+            });
         }
-
     } catch (error) {
         return res.status(500).json({
             success: false,
             message: error.message,
         });
     }
-}
-);
+});
+
 
 
 export { getTemplates, createTemplate, deleteTemplate,updateTemplate };

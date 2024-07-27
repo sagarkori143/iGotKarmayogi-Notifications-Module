@@ -1,4 +1,7 @@
-<div class="container">
+<div class="container" >
+  <div  *ngIf="!selectedTemplate">
+
+ 
     <div class="header">
       <div>
         <h2>SMS-Service</h2>
@@ -53,7 +56,45 @@
     </div>
   
     <div class="bottom">
-      <button class="send-button" (click)="sendSMS()">Select Template</button>
+      <button class="send-button" (click)="sendSMS()" >Select Template</button>
+    </div>
+
+  </div>
+  
+    <app-template-popup *ngIf="showTemplatePopup" 
+                        (templateSelected)="handleTemplateSelection($event)" 
+                        (popupClosed)="showTemplatePopup = false">
+    </app-template-popup>
+  
+    <div class="full-screen-template" *ngIf="selectedTemplate">
+      <h3>
+        Template Preview (Predefined Variables will be replaced with actual values)
+      
+      </h3>
+      <div class="template-content">
+        <h4>Template Id - {{ selectedTemplate.templateId }}</h4>
+        <p [innerHTML]="selectedTemplate.Content"></p>
+        <button (click)="closeFullScreenTemplate()">Send message</button>
+      </div>
+      <div class="user-list">
+        <h4 style="margin-top: 30px;">Selected Users</h4>
+        <table>
+          
+          <thead>
+
+            <tr>
+              <th>Name</th>
+              <th>Phone Number</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of selectedUsers">
+              <td>{{ user.name }}</td>
+              <td>{{ user.phoneNo }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
   

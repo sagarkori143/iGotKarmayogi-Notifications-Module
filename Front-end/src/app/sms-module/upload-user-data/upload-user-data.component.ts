@@ -4,11 +4,12 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { Papa } from 'ngx-papaparse';
 import { FormsModule } from '@angular/forms';
+import { TemplatePopupComponent } from '../template-popup/template-popup.component';
 
 @Component({
   selector: 'app-upload-user-data',
   standalone: true,
-  imports: [RouterModule, CommonModule, FormsModule],
+  imports: [RouterModule, CommonModule, FormsModule,TemplatePopupComponent],
   templateUrl: './upload-user-data.component.html',
   styleUrls: ['./upload-user-data.component.css']
 })
@@ -23,6 +24,9 @@ export class UploadUserDataComponent {
   showFilePopup = false;
   searchQuery = '';
   sortAscending = true;
+  showTemplatePopup = false;
+  selectedTemplate: any = null;
+  selectedUsers: any[] = [];
 
   constructor(private http: HttpClient, private papa: Papa) {}
 
@@ -94,7 +98,9 @@ export class UploadUserDataComponent {
   }
 
   sendSMS() {
+    this.showTemplatePopup = true;
     const selectedUsers = this.users.filter(user => user.checked);
+    this.selectedUsers = selectedUsers;
     console.log('Sending SMS to:', selectedUsers);
   }
 
@@ -121,5 +127,13 @@ export class UploadUserDataComponent {
 
   toggleUserSelection(user: any) {
     user.checked = !user.checked;
+  }
+  handleTemplateSelection(template: any) {
+    this.selectedTemplate = template;
+    this.showTemplatePopup = false;
+  }
+
+  closeFullScreenTemplate() {
+    this.selectedTemplate = null;
   }
 }

@@ -131,3 +131,14 @@ body {
         margin-bottom: 2rem;
     }
     
+    .alert {
+      padding: 20px;
+      background-color: #f44336; /* Red */
+      color: white;
+      margin-bottom: 15px;
+    }
+    
+    /* Define the success variant */
+    .alert-success {
+      background-color: #4CAF50; /* Green */
+    }
