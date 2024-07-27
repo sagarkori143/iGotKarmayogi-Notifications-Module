@@ -8,6 +8,7 @@ import { SendEmailComponent } from "../send-email/send-email.component";
 import { HistoryComponent } from "../history/history.component";
 import { ViewUserDataComponent } from "../view-user-data/view-user-data.component";
 
+
 @Component({
   selector: 'app-email-menu',
   standalone: true,

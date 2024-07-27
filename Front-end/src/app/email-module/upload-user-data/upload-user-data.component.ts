@@ -34,7 +34,7 @@ uploadError: any;
     if (this.fileContent) {
       try {
         const users = JSON.parse(this.fileContent.toString());
-        this.http.post('http://localhost:5001/upload-users', users).subscribe({
+        this.http.post('http://localhost:5000/api/email/upload-users', users).subscribe({
           next: (response) => {
             console.log('Users uploaded successfully:', response);
             const uploadSuccess=true
