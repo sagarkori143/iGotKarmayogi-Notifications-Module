@@ -20,7 +20,6 @@
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
   height: 200px; /* Set a fixed height */
-  /* width: calc(33.333% - 1rem); */
   display: flex;
   flex-direction: column;
   justify-content: space-between;

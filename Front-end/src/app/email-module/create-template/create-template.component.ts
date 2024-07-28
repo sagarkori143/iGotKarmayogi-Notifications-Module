@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-// import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { FormsModule } from '@angular/forms'; // Import FormsModule
+import { FormsModule } from '@angular/forms'; 
 
 @Component({
   selector: 'app-create-template',
@@ -32,7 +31,7 @@ export class CreateTemplateComponent {
       body: this.body
     };
 
-    this.http.post('http://localhost:5001/templates', templateData)
+    this.http.post('http://localhost:5000/api/email/templates', templateData)
       .subscribe({
         next: (response) => {
           console.log('Template created successfully:', response);
