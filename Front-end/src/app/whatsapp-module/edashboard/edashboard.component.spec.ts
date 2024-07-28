@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EdashboardComponent } from './edashboard.component';
+import {  EdashboardWhatsAppComponent } from './edashboard.component';
 
-describe('EdashboardComponent', () => {
-  let component: EdashboardComponent;
-  let fixture: ComponentFixture<EdashboardComponent>;
+describe(' EdashboardWhatsAppComponent', () => {
+  let component:  EdashboardWhatsAppComponent;
+  let fixture: ComponentFixture< EdashboardWhatsAppComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EdashboardComponent]
+      imports: [ EdashboardWhatsAppComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EdashboardComponent);
+    fixture = TestBed.createComponent( EdashboardWhatsAppComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

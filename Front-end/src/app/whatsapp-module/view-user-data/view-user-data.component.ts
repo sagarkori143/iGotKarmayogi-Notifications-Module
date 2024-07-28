@@ -22,7 +22,7 @@ export class ViewWhatsAppUserDataComponent implements OnInit {
   }
 
   fetchUserData() {
-    this.http.get<any[]>('http://localhost:5001/users')
+    this.http.get<any[]>('http://localhost:5000/api/email/users')
       .subscribe({
         next: (data) => {
           if (data.length > 0) {
