@@ -17,57 +17,83 @@ import { RemoveBracesPipe } from '../Services/braces-transform.pipe';
 
 
 export class SendWhatsAppComponent implements OnInit {
-  templates: any = null;
-  selectedTemplateId: string | null = null
-  loading:boolean=true;
-  currentPage: number = 0;
-  totalPages:number=1;
-  pageSize: number = 4;
-  templatesloaded:boolean=false;
-  showPopup: boolean = false;
+  templateData: any;
+  loading: boolean = true;
+  previewText: string = '';
+  fields: string[] = [];
+  recipientNumber: string = '';
 
   constructor(
+    private route: ActivatedRoute,
     private whatsappService: WhatsappTemplateService,
-    private propService: PropServiceService,
     private router: Router
   ) { }
+
   ngOnInit(): void {
-    this.getTemplates();
-  }
-  
-
-  getTemplates(): void {
-    this.whatsappService.getTemplates().subscribe(
-      data => {
-        this.templates = data.templates,
-        console.log(data);
-        this.templatesloaded=true;
-      },
-      error => console.error('Error:', error)
-    );
-    this.loading=false;
-  }
-
-  onRadioClick(templateId: string): void {
-    this.selectedTemplateId = templateId;
-  }
-
-  selectTemplate(template: any): void {
-    this.propService.setSelectedTemplate(template);
-    this.selectedTemplateId = template.id;
-  }
-
-  createTemplate(): void {
-     this.router.navigate(['dashboard/whatsapp/create']);
-  }
-
-  navigate(): void {
-    if(this.selectedTemplateId){
-      console.log("Now going to send message component!")
-    }else{
-      console.log("Please select a template first then click submit.")
+    const templateId = this.route.snapshot.paramMap.get('templateId');
+    if (templateId) {
+      this.getTemplate(templateId);
+    } else {
+      alert("Please select a template first");
     }
   }
-  
 
+  getTemplate(templateId: string): void {
+    this.whatsappService.getSingleTemplate(templateId).subscribe(
+      template => {
+        this.templateData = template;
+        this.loading = false;
+        this.initializeFields();
+        this.updatePreview();
+      },
+      error => {
+        console.error('Error fetching template:', error);
+        this.loading = false;
+      }
+    );
+  }
+
+  initializeFields(): void {
+    const fieldCount = (this.templateData?.structure.body.text.match(/{{\d+}}/g) || []).length;
+    this.fields = Array(fieldCount).fill('');
+  }
+
+  updatePreview() {
+    if (!this.templateData?.structure.body.text) {
+      return;
+    }
+
+    let updatedText = this.templateData.structure.body.text;
+
+    this.fields.forEach((field, index) => {
+      const placeholder = `{{${index + 1}}}`;
+      updatedText = updatedText.replace(placeholder, field || placeholder);
+    });
+
+    this.previewText = updatedText;
+  }
+
+  sendMessage(): void {
+    const messageBody = {
+      from: "919027527049",
+      to: this.recipientNumber,
+      messageId: "a28dd97c-1ffb-4fcf-99f1-0b557ed381da",
+      templateName: this.templateData.name,
+      placeholders: this.fields,
+      language: "en",
+      callbackData: "Callback data",
+      notifyUrl: "https://www.example.com/whatsapp"
+    };
+
+    this.whatsappService.sendMessage(messageBody).subscribe(
+      messageResponse => {
+        console.log("Message response:", messageResponse);
+        alert("The message sent successfully.");
+      },
+      error => {
+        console.error("Error sending message:", error);
+        alert("Failed to send message. Please try again.");
+      }
+    );
+  }
 }

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EmailMenuComponent } from './email-menu.component';
+import { SelectTemplateComponent } from './select-template.component';
 
-describe('EmailMenuComponent', () => {
-  let component: EmailMenuComponent;
-  let fixture: ComponentFixture<EmailMenuComponent>;
+describe('SelectTemplateComponent', () => {
+  let component: SelectTemplateComponent;
+  let fixture: ComponentFixture<SelectTemplateComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EmailMenuComponent]
+      imports: [SelectTemplateComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EmailMenuComponent);
+    fixture = TestBed.createComponent(SelectTemplateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
