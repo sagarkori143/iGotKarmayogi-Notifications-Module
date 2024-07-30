@@ -25,6 +25,11 @@
 
 .actions button {
   margin-left: 10px;
+  background-color: #007bff;
+  border-radius: 10px;
+  padding: 10px;
+  border: none;
+  color: white;
 }
 
 .popupform,

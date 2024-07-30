@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { WhatsappTemplateService } from '../Services/whatsapp-service.service';
 import { PropServiceService } from '../../services/prop-service.service';
 import { RemoveBracesPipe } from '../Services/braces-transform.pipe';
+import { NavigatorService } from '../Services/navigator.service';
 
 @Component({
   selector: 'app-send-whatsapp',
@@ -26,11 +27,12 @@ export class SendWhatsAppComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private whatsappService: WhatsappTemplateService,
-    private router: Router
+    private router: Router,
+    private MenuService: NavigatorService
   ) { }
 
   ngOnInit(): void {
-    const templateId = this.route.snapshot.paramMap.get('templateId');
+    const templateId = this.MenuService.SelectedTemplate;
     if (templateId) {
       this.getTemplate(templateId);
     } else {
