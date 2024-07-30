@@ -50,6 +50,17 @@ export class WhatsappTemplateService {
     return this.http.request('delete', `${this.apiUrl}/template/delete/${id}`, { body });
   }
 
+  modifyTemplate(template: any): Observable<any> {
+    const senderNumber = this.propService.getSenderNumber();
+    if (!senderNumber) {
+      throw new Error('Sender number is not set');
+    }
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const body = { senderNumber, ...template };
+    return this.http.patch(`${this.apiUrl}/template/modify`, body, { headers, withCredentials: true });
+}
+
+
   sendMessage(messageData: any): Observable<any> {
     console.log("This data will be passed to backend: ",messageData)
     return this.http.post(`${this.apiUrl}/message`, messageData, { withCredentials:true});

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ConfigureTemplateComponent } from './configure-template.component';
+import { ConfigureWhatsAppTemplateComponent } from './configure-template.component';
 
-describe('ConfigureTemplateComponent', () => {
-  let component: ConfigureTemplateComponent;
-  let fixture: ComponentFixture<ConfigureTemplateComponent>;
+describe('ConfigureWhatsAppTemplateComponent', () => {
+  let component: ConfigureWhatsAppTemplateComponent;
+  let fixture: ComponentFixture<ConfigureWhatsAppTemplateComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ConfigureTemplateComponent]
+      imports: [ConfigureWhatsAppTemplateComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ConfigureTemplateComponent);
+    fixture = TestBed.createComponent(ConfigureWhatsAppTemplateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

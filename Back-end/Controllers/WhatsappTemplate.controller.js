@@ -139,6 +139,62 @@ export const createTemplate = (req, res) => {
 };
 
 
+//Modify template
+
+export const modifyTemplate = (req, res) => {
+    const { senderNumber, templateId, name, language, category, allowCategoryChange, structure } = req.body;
+
+    const patchData = JSON.stringify({
+        name,
+        language,
+        category,
+        allowCategoryChange,
+        structure
+    });
+
+    const options = {
+        method: 'PATCH',
+        hostname: baseUrl,
+        path: `/whatsapp/2/senders/${senderNumber}/templates/${templateId}`,
+        headers: {
+            'Authorization': `App ${authorization}`,
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        maxRedirects: 20
+    };
+
+    // Debugging: Log the request options and data to verify correctness
+    console.log('Request Options:', options);
+    console.log('Patch Data:', patchData);
+
+    const reqPatch = https.request(options, function (resPatch) {
+        let chunks = [];
+
+        resPatch.on("data", function (chunk) {
+            chunks.push(chunk);
+        });
+
+        resPatch.on("end", function () {
+            const body = Buffer.concat(chunks);
+            // Debugging: Log the response status and body
+            console.log('Response Status:', resPatch.statusCode);
+            console.log('Response Body:', body.toString());
+            res.status(resPatch.statusCode).json(JSON.parse(body.toString()));
+        });
+
+        resPatch.on("error", function (error) {
+            console.error('Request Error:', error);
+            res.status(500).json({ error: error.message });
+        });
+    });
+
+    reqPatch.write(patchData);
+    reqPatch.end();
+};
+
+
+
 
 
 

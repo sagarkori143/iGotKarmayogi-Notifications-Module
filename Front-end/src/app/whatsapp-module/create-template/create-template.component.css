@@ -32,10 +32,12 @@ select:focus {
 }
 
 .fields {
+  width: 60%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 1.5rem;
+  gap: 5rem;
+  justify-content: space-between;
+  padding-inline: 10px;
 }
 
 
