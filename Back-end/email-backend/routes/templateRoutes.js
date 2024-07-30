@@ -6,6 +6,14 @@ const router = express.Router();
 // Route to create a new template
 router.post('/', async (req, res) => {
   const { name, subject, body } = req.body;
+  /**
+   * Creates a new template.
+   *
+   * @param {string} name - The name of the template.
+   * @param {string} subject - The subject of the template.
+   * @param {string} body - The body of the template.
+   * @returns {Promise} - A promise that resolves to the newly created template.
+   */
   const newTemplate = await createTemplate(name, subject, body);
   if (newTemplate) {
     res.status(201).json(newTemplate);
@@ -17,6 +25,10 @@ router.post('/', async (req, res) => {
 // Route to fetch all templates
 router.get('/', async (req, res) => {
   try {
+    /**
+     * Retrieves the templates.
+     * @returns {Promise<Array>} The templates.
+     */
     const templates = await getTemplates();
     res.status(200).json(templates);
   } catch (error) {
@@ -30,6 +42,13 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   const templateId = req.params.id;
   try {
+    /**
+     * Represents a template object.
+     * @typedef {Object} Template
+     * @property {string} templateId - The ID of the template.
+     * @property {string} content - The content of the template.
+     * @property {string} subject - The subject of the template.
+     */
     const template = await getTemplateById(templateId);
     if (template) {
       res.status(200).json(template);

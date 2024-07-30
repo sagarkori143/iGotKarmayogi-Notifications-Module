@@ -13,6 +13,16 @@ const variable = {
     }
 }
 
+/**
+ * TemplateSchema represents the schema for a template in the application.
+ *
+ * @typedef {Object} TemplateSchema
+ * @property {String} templateId - The unique identifier for the template.
+ * @property {String} Subject - The subject of the template.
+ * @property {String} Content - The content of the template.
+ * @property {String} type - The type of the template (email, sms, whatsapp).
+ * @property {Array} variables - An array of variables used in the template.
+ */
 const TemplateSchema = new mongoose.Schema({
     templateId: {
         type: String,

@@ -30,7 +30,7 @@ router.post('/', async (req, res) => {
         to,
         subject: selectedTemplate.subject,
         text: selectedTemplate.body,
-        html: selectedTemplate.bodyHtml, // Assuming you have an HTML body in your template model
+        html: selectedTemplate.bodyHtml, 
       };
     } else {
       // Default email content
@@ -53,6 +53,15 @@ router.post('/', async (req, res) => {
 
 
     //Log the email history in case of Success
+    /**
+     * Represents the email data object.
+     * @typedef {Object} EmailData
+     * @property {string} username - The username of the recipient.
+     * @property {string} email - The email address of the recipient.
+     * @property {string} status - The status of the email (e.g., 'Success', 'Failed').
+     * @property {string} time - The time the email was sent in the format 'HH:MM:SS'.
+     * @property {string} date - The date the email was sent in the format 'MM/DD/YYYY'.
+     */
     const emailData = {
       username: recipient,
       email: recipient,
