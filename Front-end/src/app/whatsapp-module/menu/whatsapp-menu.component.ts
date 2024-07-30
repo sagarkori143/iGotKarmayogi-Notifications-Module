@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ConfigureWhatsAppTemplateComponent } from '../configure-template/configure-template.component';
-import { WhatsappTemplateCreatorComponent } from '../../WhatsappModule/Components/Template-Creator/template-creator.component';
 import { CreateWhatsAppTemplateComponent } from '../create-template/create-template.component';
 import { EdashboardWhatsAppComponent } from '../edashboard/edashboard.component';
 import { HistoryComponent } from "../../email-module/history/history.component";

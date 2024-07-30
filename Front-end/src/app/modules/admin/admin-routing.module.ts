@@ -7,10 +7,6 @@ import { MediumSelectorComponent } from './components/medium-selector/medium-sel
 import { UseTemplateComponent } from './components/use-template/use-template.component';
 import { UserDataComponent } from './components/user-data/user-data.component';
 import { TemplateSelectorComponent } from './components/template-selector/template-selector.component';
-import { WhatsappTemplateSelectorComponent } from '../../WhatsappModule/Components/Template-Selector/template-selector.component';
-import { WhatsappTemplateCreatorComponent } from '../../WhatsappModule/Components/Template-Creator/template-creator.component';
-import { WhatsappTemplateUserComponent } from '../../WhatsappModule/Components/Template-User/template-user.component';
-
 
 import { CreateTemplateComponent } from '../../email-module/create-template/create-template.component';
 import { ConfigureTemplateComponent } from '../../email-module/configure-template/configure-template.component';
@@ -49,7 +45,7 @@ const routes: Routes = [
         import('../../sms-module/sms-module.module').then(m => m.SMSModuleModule),
       },
 
-      //New whatsapp routes
+      //Whatsapp routes
       { path: 'whatsapp/create-template', component: CreateWhatsAppTemplateComponent },
       { path: 'whatsapp/configure-template', component: ConfigureWhatsAppTemplateComponent },
       { path: 'whatsapp/view-user-data', component: ViewWhatsAppUserDataComponent },
@@ -58,10 +54,7 @@ const routes: Routes = [
       { path: 'whatsapp/edashboard', component: EdashboardWhatsAppComponent },
       
 
-      // Whatsapp routes
-      {path:'whatsapp/templates',component:WhatsappTemplateSelectorComponent},
-      {path:'whatsapp/create',component:WhatsappTemplateCreatorComponent},
-      {path:'whatsapp/use/:templateId', component:WhatsappTemplateUserComponent},
+      
       //Email routes
       { path: 'email/create-template', component: CreateTemplateComponent },
       { path: 'email/configure-template', component: ConfigureTemplateComponent },
