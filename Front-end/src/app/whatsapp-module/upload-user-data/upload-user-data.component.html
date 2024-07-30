@@ -14,7 +14,7 @@
     <div class="popupform" *ngIf="showAddForm">
       <form (ngSubmit)="addUser()">
         <input [(ngModel)]="newUser.name" name="name" placeholder="Name" required>
-        <input [(ngModel)]="newUser.phoneNo" name="phoneNo" placeholder="Phone Number" required>
+        <input [(ngModel)]="newUser.whatsappNumber" name="whatsappNumber" placeholder="Phone Number" required>
         <button class="submit" type="submit">Add User</button>
         <button class="close" type="button" (click)="showAddForm = false">🞥</button>
       </form>
@@ -46,14 +46,14 @@
           <tr *ngFor="let user of filteredUsers">
             <td><input type="checkbox" [(ngModel)]="user.checked"></td>
             <td>{{ user.name }}</td>
-            <td>{{ user.phoneNo }}</td>
+            <td>{{ user.whatsappNumber }}</td>
           </tr>
         </tbody>
       </table>
     </div>
   
     <div class="bottom">
-      <button class="send-button" (click)="sendSMS()">Select Template</button>
+      <button class="send-button" (click)="Submit()">Upload Data</button>
     </div>
   </div>
   

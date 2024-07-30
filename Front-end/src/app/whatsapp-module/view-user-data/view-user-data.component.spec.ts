@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ViewUserDataComponent } from './view-user-data.component';
+import { ViewWhatsAppUserDataComponent } from './view-user-data.component';
 
-describe('ViewUserDataComponent', () => {
-  let component: ViewUserDataComponent;
-  let fixture: ComponentFixture<ViewUserDataComponent>;
+describe('ViewWhatsAppUserDataComponent', () => {
+  let component: ViewWhatsAppUserDataComponent;
+  let fixture: ComponentFixture<ViewWhatsAppUserDataComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ViewUserDataComponent]
+      imports: [ViewWhatsAppUserDataComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ViewUserDataComponent);
+    fixture = TestBed.createComponent(ViewWhatsAppUserDataComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

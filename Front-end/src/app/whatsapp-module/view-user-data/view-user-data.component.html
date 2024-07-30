@@ -1,18 +1,24 @@
-<div class="user-data">
-  <h2>User Data</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Select</th>
-        <th *ngFor="let field of fields">{{ field }}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of users">
-        <td><input type="checkbox" (change)="toggleSelection(user.id)"></td>
-        <td *ngFor="let field of fields">{{ user[field] }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<div>
+  <div class="user-list">
+    <table>
+      <thead>
+        <tr>
+          <th>Select</th>
+          <th>Name</th>
+          <th>WhatsApp Number</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td><input type="checkbox" [(ngModel)]="user.checked"></td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.whatsappNumber }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="bottom">
+    <button class="send-button" (click)="Submit()">Confirm Selections</button>
+  </div>
 
+</div>

@@ -36,6 +36,9 @@ export class ConfigureWhatsAppTemplateComponent implements OnInit {
   ngOnInit() {
     this.senderNumber = this.propService.getSenderNumber();
     this.loadTemplateData();
+    if(this.navigatorService.getSelectedTemplate()==null){
+      alert("Please select a template first!")
+    }
   }
 
   loadTemplateData() {

@@ -1,28 +1,40 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common'
+import { CommonModule } from '@angular/common';
+import { Papa } from 'ngx-papaparse';
+import { FormsModule } from '@angular/forms';
+interface User {
+  name: string;
+  whatsappNumber: string;
+  checked: boolean;
+}
+
 @Component({
   selector: 'app-view-WhatsApp-user-data',
   standalone: true,
-  imports: [RouterModule, CommonModule],
+  imports: [RouterModule, CommonModule, FormsModule],
   templateUrl: './view-user-data.component.html',
-  styleUrl: './view-user-data.component.css'
+  styleUrls: ['./view-user-data.component.css']
 })
 
 export class ViewWhatsAppUserDataComponent implements OnInit {
-  users: any[] = [];
   fields: string[] = [];
-  selectedUsers: Set<number> = new Set<number>();
+  users: User[] = [];
+  filteredUsers: User[] = [];
+  newUser: { name: string; whatsappNumber: string } = { name: '', whatsappNumber: '' };
+  searchQuery = '';
+  sortAscending = true;
 
-  constructor(private http: HttpClient) {}
-
+  constructor(private http: HttpClient, private papa: Papa) {}
+  
+  
   ngOnInit() {
     this.fetchUserData();
   }
 
   fetchUserData() {
-    this.http.get<any[]>('http://localhost:5000/api/Whatsapp/users')
+    this.http.get<User[]>('http://localhost:5000/api/whatsapp/users', { withCredentials: true })
       .subscribe({
         next: (data) => {
           if (data.length > 0) {
@@ -36,11 +48,49 @@ export class ViewWhatsAppUserDataComponent implements OnInit {
       });
   }
 
-  toggleSelection(userId: number) {
-    if (this.selectedUsers.has(userId)) {
-      this.selectedUsers.delete(userId);
-    } else {
-      this.selectedUsers.add(userId);
-    }
+  filterUsers() {
+    this.filteredUsers = this.users.filter(user =>
+      user.name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+      user.whatsappNumber.includes(this.searchQuery)
+    );
+
+    this.sortUsers();
   }
+
+  sortUsers() {
+    this.filteredUsers.sort((a, b) => {
+      const comparison = a.name.localeCompare(b.name);
+      return this.sortAscending ? comparison : -comparison;
+    });
+  }
+
+  toggleSortOrder() {
+    this.sortAscending = !this.sortAscending;
+    this.sortUsers();
+  }
+
+  toggleUserSelection(user: User) {
+    user.checked = !user.checked;
+  }
+
+  resetSelection() {
+    this.users.forEach(user => user.checked = false);
+    this.filterUsers();  // Refresh the filtered list if needed
+  }
+
+  
+
+  Submit() {
+    const selectedUsers = this.users.filter(user => user.checked);
+    
+    if (selectedUsers.length === 0) {
+      console.error('No users selected');
+      return;
+    }
+    console.log(selectedUsers);
+    ``
+    alert("Recipients added to list!")
+  }
+
+  
 }

@@ -1,77 +1,89 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { CommonModule } from '@angular/common'
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Papa } from 'ngx-papaparse';
+
+interface User {
+  name: string;
+  whatsappNumber: string;
+  checked: boolean;
+}
 
 @Component({
   selector: 'app-upload-WhatsApp-user-data',
   standalone: true,
-  imports: [RouterModule,CommonModule,FormsModule],
+  imports: [RouterModule, CommonModule, FormsModule],
   templateUrl: './upload-user-data.component.html',
-  styleUrl: './upload-user-data.component.css'
+  styleUrls: ['./upload-user-data.component.css']
 })
-
-
-
-
 export class UploadWhatsappUserDataComponent {
-  
   fileContent: string | ArrayBuffer | null = '';
   uploadSuccess: any;
   uploadError: any;
-  users: { name: string, phoneNo: string, checked: boolean }[] = [];
-  filteredUsers: { name: string, phoneNo: string, checked: boolean }[] = [];
-  newUser: { name: string, phoneNo: string } = { name: '', phoneNo: '' };
+  users: User[] = [];
+  filteredUsers: User[] = [];
+  newUser: { name: string; whatsappNumber: string } = { name: '', whatsappNumber: '' };
   showAddForm = false;
   showFilePopup = false;
   searchQuery = '';
   sortAscending = true;
 
+  @ViewChild('fileInput') fileInput?: ElementRef<HTMLInputElement>;
+
   constructor(private http: HttpClient, private papa: Papa) {}
 
-  onFileChange(event: any) {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.fileContent = reader.result;
-    };
-    reader.readAsText(file);
-  }
-
-  onSubmit() {
-    if (this.fileContent) {
-      try {
-        const users = JSON.parse(this.fileContent.toString());
-        this.http.post('http://localhost:5001/upload-users', users).subscribe({
-          next: (response) => {
-            console.log('Users uploaded successfully:', response);
-            this.uploadSuccess = true;
-            this.filterUsers();
-          },
-          error: (error) => {
-            console.error('Error uploading users:', error);
-            this.uploadError = true;
-          }
-        });
-      } catch (error) {
-        console.error('Invalid JSON format:', error);
-      }
+  onFileChange(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.fileContent = reader.result;
+      };
+      reader.readAsText(file);
     }
   }
 
+  Submit() {
+    const selectedUsers = this.users.filter(user => user.checked);
+    
+    if (selectedUsers.length === 0) {
+      console.error('No users selected');
+      return;
+    }
+
+    this.http.post('http://localhost:5000/api/whatsapp/users', selectedUsers, { 
+      withCredentials: true 
+    }).subscribe({
+      next: (response) => {
+        console.log('Users uploaded successfully:', response);
+        alert("Data Uploaded successfully!");
+        this.users=[];
+        this.uploadSuccess = true;
+        this.fileContent = '';  // Clear file content after upload
+        this.resetSelection();
+      },
+      error: (error) => {
+        console.error('Error uploading users:', error);
+        this.uploadError = true;
+      }
+    });
+  }
+
   addUser() {
-    if (this.newUser.name && this.newUser.phoneNo) {
+    if (this.newUser.name && this.newUser.whatsappNumber) {
       this.users.push({ ...this.newUser, checked: false });
-      this.newUser = { name: '', phoneNo: '' };
+      this.newUser = { name: '', whatsappNumber: '' };
       this.showAddForm = false;
       this.filterUsers();
     }
   }
 
-  onFileSelected(event: any) {
-    const file = event.target.files[0];
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
     if (file) {
       this.papa.parse(file, {
         complete: (result) => {
@@ -79,34 +91,30 @@ export class UploadWhatsappUserDataComponent {
         },
         header: true
       });
+      this.showFilePopup = false;
+      input.value = '';  // Clear file input value
     }
-    this.showFilePopup = false;
   }
 
   processCSV(data: any[]) {
-    const newUsers = data.map(row => ({
+    const newUsers = data.map((row: any) => ({
       name: row['Name'] || row['name'],
-      phoneNo: row['Phone Number'] || row['phoneNo'] || row['phone'],
+      whatsappNumber: row['Phone Number'] || row['whatsappNumber'] || row['phone'],
       checked: false
-    })).filter(user => user.name && user.phoneNo);
+    })).filter((user: User) => user.name && user.whatsappNumber);
     
     this.users = [...this.users, ...newUsers];
     this.filterUsers();
   }
 
   importFromCSV() {
-    document.getElementById('fileInput')?.click();
-  }
-
-  sendSMS() {
-    const selectedUsers = this.users.filter(user => user.checked);
-    console.log('Sending SMS to:', selectedUsers);
+    this.fileInput?.nativeElement.click();
   }
 
   filterUsers() {
     this.filteredUsers = this.users.filter(user =>
       user.name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-      user.phoneNo.includes(this.searchQuery)
+      user.whatsappNumber.includes(this.searchQuery)
     );
 
     this.sortUsers();
@@ -124,13 +132,12 @@ export class UploadWhatsappUserDataComponent {
     this.sortUsers();
   }
 
-  toggleUserSelection(user: any) {
+  toggleUserSelection(user: User) {
     user.checked = !user.checked;
   }
 
+  resetSelection() {
+    this.users.forEach(user => user.checked = false);
+    this.filterUsers();  // Refresh the filtered list if needed
+  }
 }
-
-
-
-
-
