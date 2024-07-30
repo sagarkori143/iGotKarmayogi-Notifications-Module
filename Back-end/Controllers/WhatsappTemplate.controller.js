@@ -263,8 +263,6 @@ export const getUsers = async (req, res) => {
 };
 
 // Controller to upload user data
-  // Ensure you're importing the right model
-
 export const uploadUserData = async (req, res) => {
   try {
     const users = req.body;  // Assuming req.body is an array of users

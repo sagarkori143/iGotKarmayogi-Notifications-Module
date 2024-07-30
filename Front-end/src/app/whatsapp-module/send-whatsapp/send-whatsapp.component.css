@@ -18,8 +18,9 @@
 }
 
 .container button {
-  height: 65%;
-  width: 40%;
+  position: relative;
+  top: 15%;
+  right: 24%;
   margin-inline: auto;
   padding: 10px;
   margin-top: 3rem;
@@ -59,8 +60,9 @@
 
 .fields {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  justify-content: left;
+  gap: 0.5rem;
 }
 .form{
   display: flex;

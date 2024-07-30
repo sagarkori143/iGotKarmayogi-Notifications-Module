@@ -8,13 +8,13 @@ export class NavigatorService {
 
   constructor() { }
   SelectedTemplate:string | null= null;
-  SelectedUsers:object={};
+  private SelectedUsers: any[] = []; 
   SelectedOption:string="select-template";
 
   getSelectedTemplate():string|null{
     return this.SelectedTemplate;
   }
-  getSelectedUsers():object|null{
+  getSelectedUsers(): any[] {
     return this.SelectedUsers;
   }
   getSelectedOption():string|null{
@@ -24,8 +24,9 @@ export class NavigatorService {
   setSelectedTemplate(template:string):void{
     this.SelectedTemplate=template;
   }
-  setSelectedUsers(users:object):void{
-    this.SelectedUsers=users;
+  setSelectedUsers(users: any[]): void {
+    console.log("Selected users list is changed");
+    this.SelectedUsers = users;
   }
   setSelectedOption(option:string):void{
     this.SelectedOption=option;

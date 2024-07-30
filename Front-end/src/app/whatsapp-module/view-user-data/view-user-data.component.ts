@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Papa } from 'ngx-papaparse';
 import { FormsModule } from '@angular/forms';
+import { NavigatorService } from '../Services/navigator.service';
 interface User {
   name: string;
   whatsappNumber: string;
@@ -26,7 +27,7 @@ export class ViewWhatsAppUserDataComponent implements OnInit {
   searchQuery = '';
   sortAscending = true;
 
-  constructor(private http: HttpClient, private papa: Papa) {}
+  constructor(private http: HttpClient, private papa: Papa, private NavigatorService:NavigatorService) {}
   
   
   ngOnInit() {
@@ -88,7 +89,8 @@ export class ViewWhatsAppUserDataComponent implements OnInit {
       return;
     }
     console.log(selectedUsers);
-    ``
+    this.NavigatorService.setSelectedUsers(selectedUsers);
+    console.log("We will send message to these:",this.NavigatorService.getSelectedUsers());
     alert("Recipients added to list!")
   }
 

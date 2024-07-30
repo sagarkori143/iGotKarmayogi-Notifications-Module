@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef} from '@angular/core';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -11,28 +11,28 @@ import { NavigatorService } from '../Services/navigator.service';
 @Component({
   selector: 'app-send-whatsapp',
   standalone: true,
-  imports: [RouterModule, CommonModule,FormsModule,RemoveBracesPipe],
+  imports: [CommonModule, FormsModule, RemoveBracesPipe],
   templateUrl: './send-whatsapp.component.html',
-  styleUrl: './send-whatsapp.component.css'
+  styleUrls: ['./send-whatsapp.component.css']
 })
-
-
 export class SendWhatsAppComponent implements OnInit {
   templateData: any;
   loading: boolean = true;
   previewText: string = '';
   fields: string[] = [];
   recipientNumber: string = '';
+  recipientList: any[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private whatsappService: WhatsappTemplateService,
     private router: Router,
-    private MenuService: NavigatorService
+    private navigatorService: NavigatorService
   ) { }
 
   ngOnInit(): void {
-    const templateId = this.MenuService.SelectedTemplate;
+    const templateId = this.navigatorService.getSelectedTemplate();
+    this.recipientList = this.navigatorService.getSelectedUsers();
     if (templateId) {
       this.getTemplate(templateId);
     } else {
@@ -73,6 +73,15 @@ export class SendWhatsAppComponent implements OnInit {
     });
 
     this.previewText = updatedText;
+  }
+
+  sendMessages(): void {
+    this.recipientList.forEach(recipient => {
+      const { name, whatsappNumber } = recipient;
+      this.fields = [name];  // Assuming you only need the name in the fields array
+      this.recipientNumber = whatsappNumber;
+      this.sendMessage();
+    });
   }
 
   sendMessage(): void {
