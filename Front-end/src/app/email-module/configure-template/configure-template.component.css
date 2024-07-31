@@ -1,8 +1,14 @@
 /* General container styling */
 .template-container,
-.preview-container {
+.preview-container,
+.edit-container {
   margin: 2rem;
-
+  background-color: #f9f9f9; /* Add background color */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  overflow: auto;
 }
 
 .preview-header {
@@ -79,13 +85,7 @@
 
 /* Preview container */
 .preview-container {
-
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  padding: 1rem;
   margin-top: 2rem;
-  overflow: auto;
 }
 
 /* Preview title */
@@ -111,4 +111,56 @@
 .alert-success {
   background-color: #4CAF50;
   /* Green */
+}
+
+/* Edit container */
+.edit-container {
+  margin-top: 2rem;
+}
+
+.edit-container .card{
+  height:500px;
+}
+
+/* Edit card body */
+.edit-container .card-body {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.edit-container input[type="text"],
+.edit-container textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  
+}
+
+.custom-textarea {
+  height: 450px;
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.edit-container button {
+  align-self: flex-end;
+  margin-top: 10px;
+}
+
+.message-success {
+  color: green;
+}
+
+.message-error {
+  color: red;
 }

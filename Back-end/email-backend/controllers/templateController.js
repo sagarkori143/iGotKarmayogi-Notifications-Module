@@ -54,3 +54,29 @@ export const createTemplate = async (name, subject, body) => {
     return null;
   }
 };
+
+
+/**
+ * Updates an existing email template.
+ * @param {Object} template - The template object to update.
+ * @returns {Promise<Object|null>} - A promise that resolves to the updated template object, or null if an error occurs.
+ */
+export const updateTemplate = async (template) => {
+  try {
+    const existingTemplate = await EmailTemplate.findById(template._id);
+    if (!existingTemplate) {
+      console.error('Template not found in update');
+      return null;
+    }
+
+    existingTemplate.name = template.name;
+    existingTemplate.subject = template.subject;
+    existingTemplate.body = template.body;
+
+    await existingTemplate.save();
+    return existingTemplate;
+  } catch (error) {
+    console.error('Error updating template:', error);
+    return null;
+  }
+};

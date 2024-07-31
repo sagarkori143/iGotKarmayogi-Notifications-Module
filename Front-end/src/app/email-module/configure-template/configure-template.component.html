@@ -25,13 +25,18 @@
   </div>
 </div>
 
+<!-- Message Display -->
+<div *ngIf="message" [ngClass]="{'message-success': messageType === 'success', 'message-error': messageType === 'error'}">
+  {{ message }}
+</div>
+
 <div *ngIf="isEditing" class="edit-container" #editSection>
   <h2>Edit Template</h2>
   <div class="card">
     <div class="card-body">
       <input type="text" [(ngModel)]="selectedTemplate.name" class="form-control" placeholder="Template Name">
       <input type="text" [(ngModel)]="selectedTemplate.subject" class="form-control" placeholder="Template Subject">
-      <textarea [(ngModel)]="selectedTemplate.body" class="form-control" placeholder="Template Body"></textarea>
+      <textarea [(ngModel)]="selectedTemplate.body" class="form-control custom-textarea" placeholder="Template Body"></textarea>
       <button class="btn btn-success" (click)="saveTemplate()">SAVE</button>
     </div>
   </div>

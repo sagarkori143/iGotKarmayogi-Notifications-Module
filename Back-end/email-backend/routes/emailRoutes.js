@@ -12,7 +12,7 @@ export const saveEmailStatus = async (emailData) => {
 };
 // Route to send an email with selected or default template
 router.post('/', async (req, res) => {
-  const { to, templateId } = req.body;
+  const { to,body, templateId } = req.body;
 
   try {
     let emailContent = {};
@@ -29,13 +29,13 @@ router.post('/', async (req, res) => {
       emailContent = {
         to,
         subject: selectedTemplate.subject,
-        text: selectedTemplate.body,
+        text: body,
         html: selectedTemplate.bodyHtml, 
       };
     } else {
       // Default email content
       emailContent = {
-        to: to || 'aakarshsolar@gmail.com', // Use provided 'to' or default email
+        to: to , // Use provided 'to' or default email
         subject: 'Test Email',
         text: 'This is a default test email, no template selected',
         html: '<p>This is a default test email, no template selected.</p>',
@@ -47,7 +47,7 @@ router.post('/', async (req, res) => {
 
 
     // Ensure 'to' is always defined for logging
-    const recipient = to || 'aakarshsolar@gmail.com';
+    const recipient = to ;
 
 
 
@@ -83,7 +83,7 @@ router.post('/', async (req, res) => {
     //Log the email history in case of Failure
 
     // Ensure 'to' is always defined for logging
-    const recipient = to || 'aakarshsolar@gmail.com';
+    const recipient = to ;
 
     const emailData = {
       username: recipient,

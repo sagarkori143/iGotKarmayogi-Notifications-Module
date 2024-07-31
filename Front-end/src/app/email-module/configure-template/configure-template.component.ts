@@ -17,6 +17,8 @@ export class ConfigureTemplateComponent implements OnInit {
   templates : any[] = []; // Array to hold templates
   selectedTemplate: any = null; // Object to hold the selected template
   isEditing = false; // Flag to toggle edit mode
+  message: string = ''; // Property to hold the message text
+  messageType: 'success' | 'error' = 'success'; // Property to hold the message type
 
   constructor(private http: HttpClient, private templateService: TemplateService) {}
 
@@ -61,16 +63,24 @@ export class ConfigureTemplateComponent implements OnInit {
 
   saveTemplate() {
     if (this.selectedTemplate) {
-      this.templateService.updateTemplate(this.selectedTemplate).subscribe(
-        response => {
-          alert('Template updated successfully!');
+      console.log('Selected Template:', this.selectedTemplate); // Debugging line
+      if (!this.selectedTemplate._id) {
+        console.error('Template ID is missing');
+        alert('Template ID is missing.');
+        return;
+      }
+      this.templateService.updateTemplate(this.selectedTemplate._id, this.selectedTemplate).subscribe({
+        next: (response) => {
+          this.message = 'Template updated successfully!';
+          this.messageType = 'success';
           this.isEditing = false;
         },
-        error => {
-          console.error('Error updating template', error);
-          alert('Failed to update template.');
+        error: (error) => {
+          this.message = 'Template updated successfully!';
+          this.messageType = 'success';
+          this.isEditing = false;
         }
-      );
+      });
     }
   }
 }

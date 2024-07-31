@@ -1,5 +1,7 @@
 import express from 'express';
-import { createTemplate, getTemplates, getTemplateById } from '../controllers/templateController.js';
+import { createTemplate, getTemplates, getTemplateById , updateTemplate} from '../controllers/templateController.js';
+import mongoose from 'mongoose';
+import EmailTemplate from '../models/template.js';
 
 const router = express.Router();
 
@@ -53,11 +55,36 @@ router.get('/:id', async (req, res) => {
     if (template) {
       res.status(200).json(template);
     } else {
-      res.status(404).json({ message: 'Template not found' });
+      res.status(404).json({ message: 'Template not found by get' });
     }
   } catch (error) {
     console.error('Error fetching template by ID:', error);
     res.status(500).json({ message: 'Failed to fetch template' });
+  }
+});
+
+// Route to update a template by ID
+router.put('/:id', async (req, res) => {
+  const templateId = req.params.id;
+  const templateData = req.body;
+  try {
+    console.log('Updating template with ID:', templateId);
+    console.log('Template data:', templateData);
+
+    // Validate templateId
+    if (!mongoose.Types.ObjectId.isValid(templateId)) {
+      return res.status(400).json({ message: 'Invalid template ID' });
+    }
+
+    const updatedTemplate = await EmailTemplate.findByIdAndUpdate(templateId, templateData, { new: true });
+    if (updatedTemplate) {
+      res.status(200).json(updatedTemplate);
+    } else {
+      res.status(404).json({ message: 'Template not found' });
+    }
+  } catch (error) {
+    console.error('Error updating template by ID:', error);
+    res.status(500).json({ message: 'Failed to update template', error: error.message });
   }
 });
 
