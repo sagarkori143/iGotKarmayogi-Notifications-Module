@@ -6,6 +6,10 @@ const router = express.Router();
 // Route to fetch all history
 router.get('/history', async (req, res) => {
   try {
+    /**
+     * Represents the email history.
+     * @type {Array}
+     */
     const history = await getHistory();
     res.status(200).json(history);
   } catch (error) {

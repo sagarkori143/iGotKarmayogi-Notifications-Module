@@ -12,7 +12,7 @@ export const saveEmailStatus = async (emailData) => {
 };
 // Route to send an email with selected or default template
 router.post('/', async (req, res) => {
-  const { to, templateId } = req.body;
+  const { to,body, templateId } = req.body;
 
   try {
     let emailContent = {};
@@ -29,13 +29,13 @@ router.post('/', async (req, res) => {
       emailContent = {
         to,
         subject: selectedTemplate.subject,
-        text: selectedTemplate.body,
-        html: selectedTemplate.bodyHtml, // Assuming you have an HTML body in your template model
+        text: body,
+        html: selectedTemplate.bodyHtml, 
       };
     } else {
       // Default email content
       emailContent = {
-        to: to || 'aakarshsolar@gmail.com', // Use provided 'to' or default email
+        to: to , // Use provided 'to' or default email
         subject: 'Test Email',
         text: 'This is a default test email, no template selected',
         html: '<p>This is a default test email, no template selected.</p>',
@@ -47,12 +47,21 @@ router.post('/', async (req, res) => {
 
 
     // Ensure 'to' is always defined for logging
-    const recipient = to || 'aakarshsolar@gmail.com';
+    const recipient = to ;
 
 
 
 
     //Log the email history in case of Success
+    /**
+     * Represents the email data object.
+     * @typedef {Object} EmailData
+     * @property {string} username - The username of the recipient.
+     * @property {string} email - The email address of the recipient.
+     * @property {string} status - The status of the email (e.g., 'Success', 'Failed').
+     * @property {string} time - The time the email was sent in the format 'HH:MM:SS'.
+     * @property {string} date - The date the email was sent in the format 'MM/DD/YYYY'.
+     */
     const emailData = {
       username: recipient,
       email: recipient,
@@ -74,7 +83,7 @@ router.post('/', async (req, res) => {
     //Log the email history in case of Failure
 
     // Ensure 'to' is always defined for logging
-    const recipient = to || 'aakarshsolar@gmail.com';
+    const recipient = to ;
 
     const emailData = {
       username: recipient,
