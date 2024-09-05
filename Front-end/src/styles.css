@@ -6,6 +6,8 @@ html, body {
     width: 100%;
 }
 
+@import "primeicons/primeicons.css";
+
 *{
     box-sizing: border-box;
     margin: 0;
@@ -17,4 +19,30 @@ app-root {
     display: block;
     height: 100%;
     width: 100%;
+}
+
+.p-tooltip-text{
+    padding: 10px;
+}
+.p-tooltip{
+    margin-left: 10px;
+}
+
+.p-tooltip-arrow{
+    display: none;
+}
+
+
+
+
+.p-toast-message-text{
+    padding: 10px;
+}
+
+.p-icon{
+    display: none;
+}
+
+.p-ripple{
+    display: block !important;
 }

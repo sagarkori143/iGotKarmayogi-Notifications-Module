@@ -2,16 +2,33 @@
   <h2>Create SMS Template</h2>
   <form [formGroup]="templateForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
+
       <label for="name">Template Name</label>
+      <div style="display: flex;gap: 15px;align-items: center;">
       <input type="text" id="name" formControlName="name" class="form-control" required>
+      <img style="height: 20px;width: 20px;margin-top: 10px;" src="question.png" alt=""
+      pTooltip="Enter the name of the template" tooltipPosition="right"
+      >
+      </div>
     </div>
     <div class="form-group">
       <label for="subject">Template Id</label>
-      <input type="text" id="subject" formControlName="subject" class="form-control" required>
+      <div style="display: flex;gap: 15px;align-items: center;">
+
+        <input type="text" id="subject" formControlName="subject" class="form-control" required>
+        <img style="height: 20px;width: 20px;margin-top: 10px;" src="question.png" alt=""
+        pTooltip="You will get the template Id from your DLT Platform once your template gets Approved"
+        tooltipPosition="right">
+      </div>
+
     </div>
     <div class="form-group">
       <label for="body">Body</label>
-      <textarea id="body" formControlName="body" class="form-control" rows="6" required (input)="onBodyChange($event)"></textarea>
+      <div style="display: flex;gap: 15px">
+        <textarea id="body" formControlName="body" class="form-control" rows="6" required (input)="onBodyChange($event)"></textarea>
+        <img style="height: 20px;width: 20px;margin-top: 20px;" src="question.png" alt=""
+        pTooltip="{{tooltipText}}">
+      </div>
     </div>
 
     <div formArrayName="variables" class="variables">

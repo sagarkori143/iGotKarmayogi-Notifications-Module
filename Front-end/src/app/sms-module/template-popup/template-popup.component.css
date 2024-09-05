@@ -34,6 +34,13 @@
   
   .close {
     margin-top: 10px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #0a316c;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+
   }
   
   .full-screen-template {

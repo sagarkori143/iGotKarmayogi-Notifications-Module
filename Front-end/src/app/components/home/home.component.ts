@@ -34,7 +34,7 @@ async onSubmit() {
       const response = await firstValueFrom(this.auth.login(this.loginForm.value));
       console.log(response);
       this.router.navigate(['/dashboard']);
-    } catch (error) {
+    } catch (error:any) {
       console.log(error);
     }
   }
