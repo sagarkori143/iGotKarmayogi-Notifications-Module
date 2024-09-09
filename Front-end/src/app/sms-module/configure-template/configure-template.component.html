@@ -11,7 +11,7 @@
                 <div class="CardUpper">
                     <div class="TemplateId">
                         <h3>Template Id</h3>
-                        <h4>{{ template?.templateId }}</h4>
+                        <h4 style="font-weight: 400;">{{ template?.templateId }}</h4>
                     </div>
                     <input type="radio" name="selectedTemplate" [checked]="selectedTemplateId === template._id"
                         (click)="onRadioClick(template._id)">
