@@ -80,7 +80,7 @@ p {
 .main-content {
     flex: 1; /* Takes the remaining space */
     padding: 20px;
-    background-color: #fde5cd;
+    background-color: #FFF1E3;
     overflow-y: auto;
 }
 

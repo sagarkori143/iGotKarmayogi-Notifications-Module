@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ViewUserDataComponent } from './view-user-data.component';
+import { CampaignsComponent } from './campaigns.component';
 
-describe('ViewUserDataComponent', () => {
-  let component: ViewUserDataComponent;
-  let fixture: ComponentFixture<ViewUserDataComponent>;
+describe('CampaignsComponent', () => {
+  let component: CampaignsComponent;
+  let fixture: ComponentFixture<CampaignsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ViewUserDataComponent]
+      imports: [CampaignsComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ViewUserDataComponent);
+    fixture = TestBed.createComponent(CampaignsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

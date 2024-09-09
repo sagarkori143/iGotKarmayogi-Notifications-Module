@@ -11,17 +11,23 @@
                 <div class="CardUpper">
                     <div class="TemplateId">
                         <h3>Template Id</h3>
-                        <h4>{{ template?.templateId }}</h4>
+                        <h4 style="font-weight: 400;">{{ template?.templateId }}</h4>
                     </div>
-                    <input type="radio" name="selectedTemplate" [checked]="selectedTemplateId === template.templateId"
-                        (click)="onRadioClick(template.id)">
+                    <input type="radio" name="selectedTemplate" [checked]="selectedTemplateId === template._id"
+                        (click)="onRadioClick(template._id)">
                         <span class="radio-checkmark"></span>
                 </div>
                 <p [innerHTML]="template.Content | highlight"></p>
             </div>
         </div>
-        <div class="SubmitButton">
-            <button>Select</button>
+        <div class="SubmitButton" onclick="">
+            <button (click)="onSelectButtonClick()">Select</button>
         </div>
+        <app-variable-popup *ngIf="showPopup" [variables]="selectedTemplate.variables" 
+        (updateTemplate)="handleUpdateTemplate($event)" (cancel)="handleCancel()">
+</app-variable-popup>
+<div *ngIf="showSuccessMessage" class="alert alert-success" role="alert">
+    Template variable added successfully!
+  </div>
     </div>
 </div>
