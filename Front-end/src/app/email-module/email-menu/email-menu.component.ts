@@ -7,20 +7,20 @@ import { UploadUserDataComponent } from "../upload-user-data/upload-user-data.co
 import { SendEmailComponent } from "../send-email/send-email.component";
 import { HistoryComponent } from "../history/history.component";
 import { ViewUserDataComponent } from "../view-user-data/view-user-data.component";
+import { DocsComponent } from '../docs/docs.component';
+
 
 @Component({
   selector: 'app-email-menu',
   standalone: true,
-  imports: [RouterModule,CommonModule, ConfigureTemplateComponent, CreateTemplateComponent, UploadUserDataComponent, SendEmailComponent, HistoryComponent, ViewUserDataComponent],
+  imports: [RouterModule, CommonModule, DocsComponent, ConfigureTemplateComponent, CreateTemplateComponent, UploadUserDataComponent, SendEmailComponent, HistoryComponent, ViewUserDataComponent],
   templateUrl: './email-menu.component.html',
   styleUrl: './email-menu.component.css'
 })
 export class EmailMenuComponent {
-  selectedMenu: string = 'default';
+  selectedMenu: string = 'docs';
 
   selectMenu(option: string) {
-  this.selectedMenu = option;
-  
-  
+    this.selectedMenu = option;
   }
 }

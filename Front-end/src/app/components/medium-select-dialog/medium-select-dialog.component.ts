@@ -30,7 +30,7 @@ export class MediumSelectDialogComponent {
     if (this.selectedMedium) {
       this.propService.setMedium(this.selectedMedium);
       if (this.selectedMedium === 'Whatsapp') {
-        this.router.navigate([`/dashboard/whatsapp/templates`]);
+        this.router.navigate([`/dashboard/whatsapp/edashboard`]);
       } else if (this.selectedMedium === 'Email') {
         // Update the navigation path for Email
         this.router.navigate([`/dashboard/email/edashboard`]);

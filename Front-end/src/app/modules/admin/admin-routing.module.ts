@@ -19,6 +19,12 @@ import { UploadUserDataComponent } from '../../email-module/upload-user-data/upl
 import { SendEmailComponent } from '../../email-module/send-email/send-email.component';
 import { HistoryComponent } from '../../email-module/history/history.component';
 import { EdashboardComponent } from '../../email-module/edashboard/edashboard.component';
+import { CreateWhatsAppTemplateComponent } from '../../whatsapp-module/create-template/create-template.component';
+import { ConfigureWhatsAppTemplateComponent } from '../../whatsapp-module/configure-template/configure-template.component';
+import { SendWhatsAppComponent } from '../../whatsapp-module/send-whatsapp/send-whatsapp.component';
+import { EdashboardWhatsAppComponent } from '../../whatsapp-module/edashboard/edashboard.component';
+import { ViewWhatsAppUserDataComponent } from '../../whatsapp-module/view-user-data/view-user-data.component';
+import { UploadWhatsappUserDataComponent } from '../../whatsapp-module/upload-user-data/upload-user-data.component';
 
 
 
@@ -43,6 +49,14 @@ const routes: Routes = [
         import('../../sms-module/sms-module.module').then(m => m.SMSModuleModule),
       },
 
+      //New whatsapp routes
+      { path: 'whatsapp/create-template', component: CreateWhatsAppTemplateComponent },
+      { path: 'whatsapp/configure-template', component: ConfigureWhatsAppTemplateComponent },
+      { path: 'whatsapp/view-user-data', component: ViewWhatsAppUserDataComponent },
+      { path: 'whatsapp/upload-user-data', component:UploadWhatsappUserDataComponent },
+      { path: 'whatsapp/send-email', component: SendWhatsAppComponent },
+      { path: 'whatsapp/edashboard', component: EdashboardWhatsAppComponent },
+      
 
       // Whatsapp routes
       {path:'whatsapp/templates',component:WhatsappTemplateSelectorComponent},

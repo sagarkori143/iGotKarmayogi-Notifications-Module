@@ -20,7 +20,6 @@
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
   height: 200px; /* Set a fixed height */
-  /* width: calc(33.333% - 1rem); */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -100,4 +99,24 @@
 /* Define the success variant */
 .alert-success {
   background-color: #4CAF50; /* Green */
+}
+
+.selected-users-box {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: #f9f9f9;
+}
+
+.selected-users-box h3 {
+  margin-top: 0;
+}
+
+.selected-users-box ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.selected-users-box li {
+  margin-bottom: 10px;
 }

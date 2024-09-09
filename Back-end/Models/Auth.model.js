@@ -1,6 +1,14 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 
+/**
+ * Represents the authentication schema for the user.
+ *
+ * @typedef {Object} AuthSchema
+ * @property {string} email - The email of the user.
+ * @property {string} password - The password of the user.
+ * @property {string} [role=Admin] - The role of the user. Defaults to "Admin".
+ */
 const AuthSchema = new mongoose.Schema({
     email: {
         type: String,
