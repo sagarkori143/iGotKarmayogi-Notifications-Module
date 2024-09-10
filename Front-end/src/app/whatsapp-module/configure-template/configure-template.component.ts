@@ -18,7 +18,7 @@ import { TooltipModule } from 'primeng/tooltip';
 })
 export class ConfigureWhatsAppTemplateComponent implements OnInit {
   isClosing: boolean = false;
-
+  loading:boolean=false;
   senderNumber: string | null = null;
   name: string = '';
   language: string = 'en';
@@ -37,17 +37,19 @@ export class ConfigureWhatsAppTemplateComponent implements OnInit {
 
   ngOnInit() {
     this.senderNumber = this.propService.getSenderNumber();
-    this.loadTemplateData();
     if(this.navigatorService.getSelectedTemplate()==null){
       alert("Please select a template first!")
     }
+    else{this.loadTemplateData();}
   }
 
   loadTemplateData() {
+    this.loading=true;
     const selectedTemplateId = this.navigatorService.getSelectedTemplate();
     if (selectedTemplateId) {
       this.whatsappService.getSingleTemplate(selectedTemplateId).subscribe(
         data => {
+          this.loading=false;
           this.name = data.name;
           this.category = data.category;
           this.bodyText = data.structure.body.text;
@@ -55,7 +57,9 @@ export class ConfigureWhatsAppTemplateComponent implements OnInit {
         },
         error => {
           console.error('Error fetching template data:', error);
+          this.loading=false;
         }
+        
       );
     } else {
       console.error('No template selected');

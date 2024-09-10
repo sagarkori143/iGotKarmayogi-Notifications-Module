@@ -1,6 +1,15 @@
 <div class="configure-template">
     <h2>Configure selected Template</h2>
-    <form (ngSubmit)="onSubmit()" #templateForm="ngForm" class="form">
+    <div *ngIf="loading" class="loader">
+        <span>L</span>
+        <span>O</span>
+        <span>A</span>
+        <span>D</span>
+        <span>I</span>
+        <span>N</span>
+        <span>G</span>
+    </div>
+    <form *ngIf="!loading" (ngSubmit)="onSubmit()" #templateForm="ngForm" class="form">
         <div class="form-group">
             <label for="name">Template Name</label>
             <div style="display: flex; gap: 15px; align-items: center;">
