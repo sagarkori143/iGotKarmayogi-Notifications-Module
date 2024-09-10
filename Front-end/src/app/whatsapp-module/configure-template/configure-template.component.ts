@@ -7,11 +7,12 @@ import { PropServiceService } from '../../services/prop-service.service';
 import { WhatsappTemplateService } from '../Services/whatsapp-service.service';
 import { NavigatorService } from '../Services/navigator.service';
 import { OnInit } from '@angular/core';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-configure-WhatsApp-template',
   standalone: true,
-  imports: [RouterModule, CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [RouterModule, CommonModule, FormsModule, ReactiveFormsModule,TooltipModule],
   templateUrl: './configure-template.component.html',
   styleUrl: './configure-template.component.css'
 })
@@ -25,6 +26,7 @@ export class ConfigureWhatsAppTemplateComponent implements OnInit {
   allowCategoryChange: boolean = false;
   bodyText: string = '';
   examples: string[] = [''];
+  showSuccessMessage: boolean = false;
 
   constructor(
     private http: HttpClient,
