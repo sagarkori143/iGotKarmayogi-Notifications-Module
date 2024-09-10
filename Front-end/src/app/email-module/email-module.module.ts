@@ -9,7 +9,7 @@ import { UploadUserDataComponent } from './upload-user-data/upload-user-data.com
 import { SendEmailComponent } from './send-email/send-email.component';
 import { HistoryComponent } from './history/history.component';
 import { EdashboardComponent } from './edashboard/edashboard.component';
-
+import { UserSelectionService } from './view-user-data/user-selection.service';
 import { EmailModuleRoutingModule } from './email-module-routing.module';
 
 
@@ -29,6 +29,7 @@ import { EmailModuleRoutingModule } from './email-module-routing.module';
   ],
   declarations: [],
   exports: [EmailMenuComponent],
+  providers: [UserSelectionService]
 })
 export class EmailModuleModule { }
 

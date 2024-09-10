@@ -1,38 +1,39 @@
 .create-template {
-    width: 50vw;
+    width: 100%;
     padding: 20px;
     border-radius: 5px;
     background-color: transparent;
+    position: relative;
   }
 
   .create-template h2{
     margin-bottom: 20px;
-    font-size: 1.75rem;
-    font-weight: 600;
+    font-size: 1.5rem;
+    font-weight: 500;
   }
   
   .form-group {
     margin-bottom: 20px;
-    
+    width: 60%;
   }
 
   .form-g select{
-    width: 30%;
     padding: 8px;
+    width: 150px;
     font-size: 16px;
-    border: 1px solid #848484;
-    border-radius: 5px;
-    background-color: white;
+    border: 1.5px solid #000000;
+    /* border-radius: 5px; */
+    background-color: transparent !important;
   }
 
   .form-g input{
-    flex : 1;
+    width: 150px !important;
     margin-top: 0 !important;
+    width: 100%;
     padding: 8px;
     font-size: 16px;
-    border: 1px solid #848484;
-    border-radius: 5px;
-    background-color: white;
+    border: 1px solid #000000;
+    background-color: transparent !important;
   }
 
   .form-g{
@@ -50,8 +51,9 @@
     padding: 8px;
     margin-top: 10px;
     font-size: 16px;
-    border: 1px solid #848484;
-    border-radius: 5px;
+    border: 1.5px solid #848484;
+    border-radius: 0px;
+    background-color: transparent !important;
   }
   
   textarea {
@@ -60,24 +62,21 @@
   
   .btn-primary {
     position: absolute;
-    right: 5%;
-    bottom: 8%;
+    top: 5%;
+    right: 0;
     
     margin-right: 2rem;
     padding: 0.7rem;
-    padding-inline: 4rem;
-    background-color: #0a316c;
+    padding-inline: 2rem;
+    background-color: #3B1F03;
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
     color: white;
     cursor: pointer;
     font-size: 1rem;
   }
-  
-  .btn-primary:hover {
-    background-color: #0056b3;
-  }
-  /* Define the base alert class */
+
+
 .alert {
   padding: 20px;
   background-color: #f44336; /* Red */
@@ -85,13 +84,17 @@
   margin-bottom: 15px;
 }
 
-/* Define the success variant */
 .alert-success {
   background-color: #4CAF50; /* Green */
 }
+
+
   
 .variables{
   display: flex;
+  width: 35%;
   flex-direction: column;
   gap: 10px;
+  margin-top: 2rem;
+  margin-left: 2rem;
 }

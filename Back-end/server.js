@@ -16,6 +16,7 @@ import AuthRouter from './Routes/Auth.routes.js';
 import TemplateRouter from './Routes/Template.routes.js';
 import EmailRouter from './email-backend/routes/index.js';
 import WhatsappRouter from './Routes/Whatsapp.routes.js';
+import userRouter from './Routes/User.routes.js';
 import listEndpoints from 'express-list-endpoints';
 // Initialize express
 const app = express();
@@ -49,6 +50,7 @@ app.use('/api/auth', AuthRouter);
 app.use('/api/templates', TemplateRouter);
 app.use('/api/email', EmailRouter);
 app.use('/api/whatsapp',WhatsappRouter);
+app.use('/api/user',userRouter);
 
 
 // Error handling middlewares

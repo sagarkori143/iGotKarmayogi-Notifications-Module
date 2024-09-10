@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { TooltipModule } from 'primeng/tooltip';
+
 
 @Component({
   selector: 'app-create-template',
@@ -12,7 +14,8 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    TooltipModule
   ],
   templateUrl: './create-template.component.html',
   styleUrls: ['./create-template.component.css']
@@ -21,6 +24,7 @@ export class CreateTemplateComponent {
   templateForm: FormGroup;
   predefinedVariables = ['username', 'date', 'time']; // Example predefined variables
   showSuccessMessage: boolean | undefined;
+  tooltipText: string = `Please enter the same template body which you get verified on your DLT platform and please use {{}} for your variable name like {{name}};`;
 
   constructor(private fb: FormBuilder, private http: HttpClient) {
     this.templateForm = this.fb.group({

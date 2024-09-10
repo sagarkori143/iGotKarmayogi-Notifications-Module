@@ -23,6 +23,9 @@
                         <li class="nav-item">
                             <a class="nav-link" [class.active]="selectedMenu === 'history'" (click)="selectMenu('history')">History</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" [class.active]="selectedMenu === 'docs'" (click)="selectMenu('docs')">Docs</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -37,6 +40,7 @@
                     <app-upload-user-data *ngIf="selectedMenu === 'upload-user-data'"></app-upload-user-data>
                     <app-send-email *ngIf="selectedMenu === 'send-email'"></app-send-email>
                     <app-history *ngIf="selectedMenu === 'history'"></app-history>
+                    <app-docs *ngIf="selectedMenu === 'docs'"></app-docs>
                 </div>
             </main>
         </div>

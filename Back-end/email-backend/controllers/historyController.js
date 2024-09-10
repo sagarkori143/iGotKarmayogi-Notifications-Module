@@ -1,6 +1,9 @@
 import EmailHistory from '../models/emailHistory.js';
+/**
+ * Fetch all email history from the database.
+ * @returns {Array} - An array of email history records.
+*/
 
-// Fetch all history from the database
 export const getHistory = async () => {
   try {
     const history = await EmailHistory.find();
