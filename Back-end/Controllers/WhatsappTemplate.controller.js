@@ -167,6 +167,7 @@ export const modifyTemplate = (req, res) => {
     // Debugging: Log the request options and data to verify correctness
     console.log('Request Options:', options);
     console.log('Patch Data:', patchData);
+    console.log("template id:",templateId);
 
     const reqPatch = https.request(options, function (resPatch) {
         let chunks = [];

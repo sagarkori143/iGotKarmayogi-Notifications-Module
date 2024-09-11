@@ -71,9 +71,11 @@ export class ConfigureWhatsAppTemplateComponent implements OnInit {
   }
 
   onSubmit() {
+    var selectedTemplateId = this.navigatorService.getSelectedTemplate();
     const templateData = {
       senderNumber: this.senderNumber,
       name: this.name,
+      templateId:selectedTemplateId,
       language: this.language,
       category: this.category,
       allowCategoryChange: this.allowCategoryChange,
@@ -87,7 +89,7 @@ export class ConfigureWhatsAppTemplateComponent implements OnInit {
     };
 
     console.log('Template modification started');
-    console.log(templateData.structure.body.examples);
+    console.log(templateData);
 
     this.whatsappService.modifyTemplate(templateData).subscribe(
       data => {
