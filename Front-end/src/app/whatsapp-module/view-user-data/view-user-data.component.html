@@ -1,21 +1,34 @@
-<p>view-user-data works!</p>
-<button routerLink="../edashboard">Back to Menu</button>
+<div class="container">
 
-<div class="user-data">
-  <h2>User Data</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Select</th>
-        <th *ngFor="let field of fields">{{ field }}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of users">
-        <td><input type="checkbox" (change)="toggleSelection(user.id)"></td>
-        <td *ngFor="let field of fields">{{ user[field] }}</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="sub-Container">
+    <div>
+      <h2 style="font-weight: 500;">Select Users</h2>
+    </div>
+
+    <div class="actions">
+      <div class="search-sort">
+        <input type="text" [(ngModel)]="searchQuery" (input)="filterUsers()" placeholder="Search by name or number" />
+      </div>
+      <div class="buttons">
+        <button class="optional-button" (click)="showAddForm = !showAddForm">Add Manually</button>
+        <button class="send-button" (click)="Submit()">Confirm Selections</button>
+      </div>
+    </div>
+
+    <div *ngIf="showAddForm" class="AddOneUserForm">
+      <form (ngSubmit)="addUser()">
+        <input [(ngModel)]="newUser.name" name="name" placeholder="Name" required />
+        <input [(ngModel)]="newUser.whatsappNumber" name="whatsappNumber" placeholder="Phone Number" required />
+        <button class="submit" type="submit">Add User</button>
+        <button class="close" type="button" (click)="showAddForm = false">🞥</button>
+      </form>
+    </div>
+
+    <div class="ag-theme-alpine" style="height: 500px; width: 100%;">
+      <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-quartz" [rowData]="filteredUsers"
+        [columnDefs]="columnDefs" rowSelection="multiple" (gridReady)="onGridReady($event)"
+        (selectionChanged)="onSelectionChanged()" [gridOptions]="gridOptions">
+      </ag-grid-angular>
+    </div>
+  </div>
 </div>
-

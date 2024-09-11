@@ -1,18 +1,43 @@
-<p>upload-user-data works!</p>
-<button routerLink="../edashboard">Back to Menu</button>
-<p>Upload User Data</p>
-<form (ngSubmit)="onSubmit()" enctype="multipart/form-data">
-    <div class="form-group">
-        <label for="file">Select JSON File</label>
-        <input type="file" id="file" name="file" (change)="onFileChange($event)" class="form-control" required>
+<div class="container" style="position: relative;">
+  <p-toast [life]="2000"></p-toast>
+
+  <div class="sub-Container">
+    <div>
+      <h2 style="font-weight: 500;">Select Users</h2>
     </div>
-    <button type="submit" class="btn btn-primary">Upload</button>
-</form>
 
-<div *ngIf="uploadSuccess" class="alert alert-success">
-    Data uploaded successfully!
-</div>
+    <div class="actions">
+      <div class="search-sort">
+        <input type="text" [(ngModel)]="searchQuery" (input)="filterUsers()" placeholder="Search by name or number" />
+      </div>
+      <div class="buttons">
+        <button class="optional-button" (click)="showAddForm = !showAddForm">Add Manually</button>
+        <button class="optional-button" (click)="importFromCSV()">
+          <input type="file" id="fileInput" #fileInput style="display: none;" (change)="onFileSelected($event)" accept=".csv" />
+          Import from CSV
+        </button>
+        <button class="send-button" (click)="Submit()">Upload to Cloud</button>
+      </div>
+    </div>
 
-<div *ngIf="uploadError" class="alert alert-danger">
-    Error uploading data. Please try again.
+    <div *ngIf="showAddForm" class="AddOneUserForm">
+      <form (ngSubmit)="addUser()">
+        <input [(ngModel)]="newUser.name" name="name" placeholder="Name" required>
+        <input [(ngModel)]="newUser.whatsappNumber" name="whatsappNumber" placeholder="Phone Number" required>
+        <button class="submit" type="submit">Add User</button>
+        <button class="close" type="button" (click)="showAddForm = false">🞥</button>
+      </form>
+    </div>
+
+    <div class="ag-theme-alpine" style="height: 500px; width: 100%;">
+      <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-quartz"
+        [rowData]="filteredUsers"
+        [columnDefs]="columnDefs"
+        rowSelection="multiple"
+        (gridReady)="onGridReady($event)"
+        (selectionChanged)="onSelectionChanged()"
+        [gridOptions]="gridOptions">
+      </ag-grid-angular>
+    </div>
+  </div>
 </div>

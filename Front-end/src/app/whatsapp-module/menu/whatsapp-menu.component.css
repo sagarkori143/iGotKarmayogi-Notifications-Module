@@ -69,6 +69,7 @@ p {
     color: #333;
     text-decoration: none;
     transition: background-color 0.3s ease;
+    cursor: pointer;
 }
 
 .nav-link:hover {

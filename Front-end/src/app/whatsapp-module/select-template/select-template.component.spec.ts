@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TemplateCreatorComponent } from './template-creator.component';
+import { SelectTemplateComponent } from './select-template.component';
 
-describe('TemplateCreatorComponent', () => {
-  let component: TemplateCreatorComponent;
-  let fixture: ComponentFixture<TemplateCreatorComponent>;
+describe('SelectTemplateComponent', () => {
+  let component: SelectTemplateComponent;
+  let fixture: ComponentFixture<SelectTemplateComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TemplateCreatorComponent]
+      imports: [SelectTemplateComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TemplateCreatorComponent);
+    fixture = TestBed.createComponent(SelectTemplateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

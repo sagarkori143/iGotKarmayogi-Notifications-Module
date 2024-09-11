@@ -1,18 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { WhatsAppMenuComponent } from './whatsapp-menu.component';
 
-import { EmailMenuComponent } from './email-menu.component';
 
-describe('EmailMenuComponent', () => {
-  let component: EmailMenuComponent;
-  let fixture: ComponentFixture<EmailMenuComponent>;
+
+describe('WhatsAppMenuComponent', () => {
+  let component: WhatsAppMenuComponent;
+  let fixture: ComponentFixture<WhatsAppMenuComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EmailMenuComponent]
+      imports: [WhatsAppMenuComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EmailMenuComponent);
+    fixture = TestBed.createComponent(WhatsAppMenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
